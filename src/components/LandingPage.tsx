@@ -1,0 +1,451 @@
+import React, { useState } from 'react';
+import { useApp } from '../context/AppContext';
+import { BannerCarousel } from './BannerCarousel';
+import { MercadoPagoModal } from './MercadoPagoModal';
+import { 
+  Zap, 
+  ShieldCheck, 
+  Search, 
+  ExternalLink, 
+  MessageCircle, 
+  Calendar, 
+  Smartphone, 
+  Layers, 
+  Calculator,
+  HelpCircle,
+  ChevronDown,
+  CreditCard,
+  MapPin,
+  Image,
+  ShoppingBag,
+  Sliders,
+  CheckCircle2
+} from 'lucide-react';
+
+const InstagramIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
+
+export const LandingPage: React.FC = () => {
+  const { projectsShowcase, setIsLoginModalOpen } = useApp();
+
+  // Estado para el Cotizador Instantáneo Interactivo
+  const [quoteProjectType, setQuoteProjectType] = useState<'express' | 'pro' | 'ecommerce'>('pro');
+  const [includeDomain, setIncludeDomain] = useState(false);
+  const [includeBooking, setIncludeBooking] = useState(false);
+  const [includeAdvancedSeo, setIncludeAdvancedSeo] = useState(false);
+
+  // Estado Modal Mercado Pago
+  const [isMpModalOpen, setIsMpModalOpen] = useState(false);
+
+  // FAQ Accordion State
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  // PRECIOS BASE (LO BÁSICO DE CADA PLAN):
+  // 1. Landing Básica: Base $200.000 CLP (Desde $200.000)
+  // 2. Web Pro Pyme: Base $250.000 CLP (Desde $250.000)
+  // 3. Sitio Ventas / E-Commerce: Base $300.000 CLP (Desde $300.000)
+  const calculateTotalEstimate = () => {
+    let base = quoteProjectType === 'express' ? 200000 : quoteProjectType === 'pro' ? 250000 : 300000;
+    if (includeDomain) base += 15000;
+    if (includeBooking) base += 20000;
+    if (includeAdvancedSeo) base += 15000;
+    return base;
+  };
+
+  const getSelectedExtrasList = () => {
+    const selectedExtras: string[] = [];
+    if (includeDomain) selectedExtras.push('Dominio .CL / .COM e Infraestructura SSL');
+    if (includeBooking) selectedExtras.push('Agendamiento a 3 Reuniones para mantencion y cambios');
+    if (includeAdvancedSeo) selectedExtras.push('Posicionamiento SEO en Buscadores + Marcado JSON-LD');
+    return selectedExtras;
+  };
+
+  const getProjectTypeLabel = () => {
+    if (quoteProjectType === 'express') return 'Landing Básica (Desde $200.000 CLP)';
+    if (quoteProjectType === 'pro') return 'Web Pro Pyme (Desde $250.000 CLP)';
+    return 'Sitio Ventas / E-Commerce (Desde $300.000 CLP)';
+  };
+
+  const handleSendQuoteWhatsapp = () => {
+    const total = calculateTotalEstimate();
+    const typeLabel = getProjectTypeLabel();
+    const selectedExtras = getSelectedExtrasList();
+    const extrasFormatted = selectedExtras.length > 0 ? selectedExtras.map(e => `• ${e}`).join('%0A') : '• Ningún adicional';
+
+    const message = `Hola Cristóbal, estuve cotizando en tu página web:%0A%0A📌 *Tipo de Proyecto:* ${typeLabel}%0A%0A📋 *Opciones Seleccionadas:*%0A${extrasFormatted}%0A%0A💰 *Presupuesto Estimado Total:* $${total.toLocaleString('es-CL')} CLP%0A%0A¿Podemos coordinar los detalles para comenzar?`;
+
+    window.open(`https://wa.me/56956628609?text=${message}`, '_blank');
+  };
+
+  const handleWhatsappDirect = () => {
+    window.open('https://wa.me/56956628609?text=Hola%20Cristóbal,%20quiero%20cotizar%20mi%20página%20web', '_blank');
+  };
+
+  const faqs = [
+    {
+      q: '¿Cómo funciona el Panel de Control Moldeable?',
+      a: 'Te entrego un acceso exclusivo donde puedes cambiar títulos, fotos, banners de ofertas, WhatsApp de contacto y colores con un par de clics. Los cambios se reflejan de inmediato en tu web sin tener que pagar a un programador cada vez.'
+    },
+    {
+      q: '¿Mi página web aparecerá en las búsquedas en línea?',
+      a: 'Sí, todas las páginas incorporan etiquetas meta avanzadas, datos estructurados Schema.org y optimización de velocidad mobile-first para lograr un excelente posicionamiento SEO.'
+    },
+    {
+      q: '¿Cuánto tiempo tarda en estar lista mi web?',
+      a: 'Una Landing Express está lista en 3 a 5 días hábiles. Un Sitio Web Pro toma entre 7 a 12 días, dependiendo de los contenidos y funcionalidades.'
+    },
+    {
+      q: '¿Tendré soporte si necesito ayuda?',
+      a: 'Por supuesto. Cuentas con atención directa por WhatsApp (+569 5662 8609), correo electrónico y la posibilidad de agendar reuniones de avance por Google Meet.'
+    }
+  ];
+
+  return (
+    <div className="landing-container">
+      {/* Modal Checkout Mercado Pago con Cupón 30% OFF */}
+      <MercadoPagoModal 
+        isOpen={isMpModalOpen}
+        onClose={() => setIsMpModalOpen(false)}
+        projectTypeLabel={getProjectTypeLabel()}
+        baseAmountCLP={calculateTotalEstimate()}
+        selectedExtras={getSelectedExtrasList()}
+      />
+
+      {/* 1. HERO SECTION */}
+      <section className="hero-section">
+        <div className="container">
+          <div className="badge-glow" style={{ marginBottom: '16px' }}>
+            <Zap size={15} style={{ color: '#48e5c2' }} />
+            <span>Desarrollo Web Ultra Rápido • Puntuación 100/100 en Rendimiento</span>
+          </div>
+
+          <h1 className="hero-title">
+            Vende más con una Web <span className="text-gradient">Moderna & Rápida</span> 100% <span className="text-gradient-cyan">Moldeable por Ti</span>
+          </h1>
+
+          <p className="hero-subtitle">
+            Sin complicarte con código: cambia tus banners, precios y anuncios en segundos desde tu propio panel de control.
+          </p>
+
+          <div className="hero-ctas" style={{ maxWidth: '520px', width: '100%', margin: '0 auto' }}>
+            <button onClick={handleWhatsappDirect} className="btn-primary btn-whatsapp" style={{ padding: '16px 32px', fontSize: '1.05rem', whiteSpace: 'nowrap' }}>
+              <MessageCircle size={22} />
+              <span>Cotizar en WhatsApp (+569 5662 8609)</span>
+            </button>
+          </div>
+
+          {/* Tarjetas de Garantía Centradas */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', marginTop: '36px', maxWidth: '640px', margin: '36px auto 0' }}>
+            <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
+              <ShieldCheck size={22} style={{ color: '#48e5c2', margin: '0 auto 6px' }} />
+              <span style={{ display: 'block', fontWeight: 700 }}>Seguridad SSL</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>256-bit Incluido</span>
+            </div>
+
+            <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
+              <Search size={22} style={{ color: '#38bdf8', margin: '0 auto 6px' }} />
+              <span style={{ display: 'block', fontWeight: 700 }}>SEO en Buscadores</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Posicionamiento Web</span>
+            </div>
+
+            <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
+              <Smartphone size={22} style={{ color: '#48e5c2', margin: '0 auto 6px' }} />
+              <span style={{ display: 'block', fontWeight: 700 }}>Mobile First</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>100% Adaptable</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. CARRUSEL DE BANNERS PROMINENTE */}
+      <section className="container" style={{ margin: '24px auto 48px' }}>
+        <BannerCarousel />
+      </section>
+
+      {/* 3. COTIZADOR INSTANTÁNEO INTERACTIVO */}
+      <section className="container" style={{ margin: '48px auto' }}>
+        <div className="glass-card cotizador-box" style={{ padding: '32px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <div className="badge-glow badge-emerald" style={{ marginBottom: '8px' }}>
+              <Calculator size={15} />
+              <span>Cotizador Instantáneo Mobile-First</span>
+            </div>
+            <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Calcula el Valor de tu Web en Segundos</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+              Selecciona el tipo de web para tu negocio y marca las opciones que necesitas:
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
+            {/* Opciones de tipo de proyecto con descripciones detalladas y precios DESDE */}
+            <div className="form-group">
+              <label className="form-label" style={{ fontWeight: 700, marginBottom: '10px' }}>Tipo de Plataforma Web:</label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
+                
+                {/* PLAN 1: LANDING BÁSICA (Desde $200.000) */}
+                <button 
+                  type="button"
+                  onClick={() => setQuoteProjectType('express')}
+                  className={`quote-type-btn ${quoteProjectType === 'express' ? 'active' : ''}`}
+                  style={{ textAlign: 'left', padding: '16px' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                    <strong style={{ fontSize: '1.05rem' }}>Landing Básica</strong>
+                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $200.000</span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
+                    Página web directa ideal para presentar tu negocio rápidamente.
+                  </p>
+                  <ul style={{ listStyle: 'none', fontSize: '0.76rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Image size={13} style={{ color: '#38bdf8' }} /> Galería de Imágenes & Fotos HD</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Sliders size={13} style={{ color: '#48e5c2' }} /> Banners Promocionales Dinámicos</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><MapPin size={13} style={{ color: '#f59e0b' }} /> Mapa Interactivo Google Maps</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><MessageCircle size={13} style={{ color: '#48e5c2' }} /> Botón Directo a WhatsApp</li>
+                  </ul>
+                </button>
+
+                {/* PLAN 2: WEB PRO PYME (Desde $250.000) */}
+                <button 
+                  type="button"
+                  onClick={() => setQuoteProjectType('pro')}
+                  className={`quote-type-btn ${quoteProjectType === 'pro' ? 'active' : ''}`}
+                  style={{ textAlign: 'left', padding: '16px' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                    <strong style={{ fontSize: '1.05rem' }}>Web Pro Pyme</strong>
+                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $250.000</span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
+                    Sitio web completo multi-sección autoadministrable.
+                  </p>
+                  <ul style={{ listStyle: 'none', fontSize: '0.76rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Layers size={13} style={{ color: '#38bdf8' }} /> Multi-Sección (Inicio, Servicios, Nosotros)</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Sliders size={13} style={{ color: '#48e5c2' }} /> Panel de Control 100% Moldeable</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Calendar size={13} style={{ color: '#48e5c2' }} /> Agendamiento de Citas en Vivo</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><MapPin size={13} style={{ color: '#f59e0b' }} /> Google Maps & Formulario Web</li>
+                  </ul>
+                </button>
+
+                {/* PLAN 3: VENTAS / E-COMMERCE (Desde $300.000) */}
+                <button 
+                  type="button"
+                  onClick={() => setQuoteProjectType('ecommerce')}
+                  className={`quote-type-btn ${quoteProjectType === 'ecommerce' ? 'active' : ''}`}
+                  style={{ textAlign: 'left', padding: '16px' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                    <strong style={{ fontSize: '1.05rem' }}>Sitio Ventas / E-Commerce</strong>
+                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $300.000</span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
+                    Tienda online con catálogo dinámico y cobro con tarjeta.
+                  </p>
+                  <ul style={{ listStyle: 'none', fontSize: '0.76rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><ShoppingBag size={13} style={{ color: '#48e5c2' }} /> Catálogo de Productos / TCG</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><CreditCard size={13} style={{ color: '#38bdf8' }} /> Pagos Webpay / MercadoPago</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Sliders size={13} style={{ color: '#38bdf8' }} /> Gestión de Stock & Panel Admin</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><CheckCircle2 size={13} style={{ color: '#48e5c2' }} /> Todo lo de los planes anteriores</li>
+                  </ul>
+                </button>
+
+              </div>
+            </div>
+
+            {/* Checkboxes de adicionales opcionales */}
+            <div className="quote-options-box" style={{ display: 'flex', flexDirection: 'column', gap: '14px', padding: '18px', borderRadius: '14px' }}>
+              <label className="quote-checkbox-label">
+                <span>Dominio .CL / .COM e Infraestructura SSL</span>
+                <input type="checkbox" checked={includeDomain} onChange={(e) => setIncludeDomain(e.target.checked)} className="custom-checkbox" />
+              </label>
+
+              <label className="quote-checkbox-label">
+                <span>Agendamiento a 3 Reuniones para mantencion y cambios</span>
+                <input type="checkbox" checked={includeBooking} onChange={(e) => setIncludeBooking(e.target.checked)} className="custom-checkbox" />
+              </label>
+
+              <label className="quote-checkbox-label">
+                <span>Posicionamiento SEO en Buscadores + Marcado JSON-LD</span>
+                <input type="checkbox" checked={includeAdvancedSeo} onChange={(e) => setIncludeAdvancedSeo(e.target.checked)} className="custom-checkbox" />
+              </label>
+            </div>
+
+            {/* Total Calculado & Botones Duales */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', paddingTop: '10px' }}>
+              <div>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'block', fontWeight: 600 }}>PRESUPUESTO ESTIMADO APROXIMADO:</span>
+                <strong style={{ fontSize: '2.2rem', color: 'var(--c-mint-cyan)' }}>
+                  ${calculateTotalEstimate().toLocaleString('es-CL')} CLP
+                </strong>
+                <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--c-mint-cyan)', fontWeight: 700, marginTop: '2px' }}>
+                  🎁 Aplica cupón INAUGURACION10 para 10% OFF en Mercado Pago
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', flex: 1, justifyContent: 'flex-end' }}>
+                <button onClick={handleSendQuoteWhatsapp} className="btn-primary btn-whatsapp" style={{ padding: '14px 20px', fontSize: '0.9rem' }}>
+                  <MessageCircle size={18} />
+                  <span>Enviar a WhatsApp</span>
+                </button>
+
+                <button onClick={() => setIsMpModalOpen(true)} className="btn-primary" style={{ padding: '14px 20px', fontSize: '0.9rem', background: 'linear-gradient(135deg, #009ee3, #0072bb)' }}>
+                  <CreditCard size={18} />
+                  <span>Pagar con Tarjeta (Mercado Pago)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SECCIÓN PORTAFOLIO EN MARCO MOCKUP DE LAPTOP (EXACTO SOLICITADO POR EL USUARIO) */}
+      <section className="container" style={{ padding: '24px 0 48px' }}>
+        <div className="section-header">
+          <div className="badge-glow" style={{ marginBottom: '10px' }}>
+            <Layers size={15} />
+            <span>Casos de Éxito & Portafolio</span>
+          </div>
+          <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Páginas Creadas por Cristóbal Sandoval</h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+            Presentación en maqueta digital de alta definición para nuestros clientes:
+          </p>
+        </div>
+
+        <div className="portfolio-grid">
+          {projectsShowcase.map((project) => {
+            // Extracción de dominio en mayúsculas (ej: CARDPOINT.CL)
+            const domainName = project.liveUrl.replace('https://', '').replace('/', '').toUpperCase();
+
+            return (
+              <div key={project.id} className="glass-card portfolio-card">
+                
+                {/* MARCO LAPTOP MOCKUP REALISTA (COMO LA IMAGEN ADJUNTADA) */}
+                <div className="laptop-mockup-container">
+                  <div className="laptop-frame">
+                    <div className="laptop-camera-dot"></div>
+                    <div className="laptop-screen">
+                      {/* Cabecera Simulada de la Web dentro de la Laptop */}
+                      <div style={{ background: '#3b5e78', padding: '6px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'white', fontSize: '0.7rem', position: 'relative', zIndex: 2 }}>
+                        <strong style={{ fontSize: '0.75rem' }}>{project.title}</strong>
+                        <span style={{ fontSize: '0.65rem', background: 'rgba(255,255,255,0.2)', padding: '2px 6px', borderRadius: '4px' }}>{project.statusText}</span>
+                      </div>
+
+                      {/* Imagen Real del Proyecto en Vivo */}
+                      {project.previewImage ? (
+                        <div style={{ width: '100%', height: 'calc(100% - 28px)', overflow: 'hidden' }}>
+                          <img 
+                            src={project.previewImage} 
+                            alt={`Preview ${project.title}`}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                          />
+                        </div>
+                      ) : (
+                        /* Fallback Contenido Visual */
+                        <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100% - 28px)', textAlign: 'center', background: 'linear-gradient(180deg, #201a35 0%, #151025 100%)' }}>
+                          <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'white', marginBottom: '8px' }}>
+                            {project.subtitle}
+                          </h4>
+                          <span style={{ fontSize: '0.72rem', color: '#a2c4d4', maxWidth: '80%' }}>
+                            {project.description}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Base de la Laptop */}
+                  <div className="laptop-keyboard-base">
+                    <div className="laptop-trackpad-notch"></div>
+                  </div>
+
+                  {/* Texto de Dominio y Categoría centrado debajo de la laptop */}
+                  <h3 className="laptop-domain-title">{domainName}</h3>
+                  <div className="laptop-category-sub">{project.subtitle}</div>
+                </div>
+
+                {/* Etiquetas de Tecnología */}
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '16px' }}>
+                  {project.techStack.map((tech, idx) => (
+                    <span key={idx} className="tech-tag">{tech}</span>
+                  ))}
+                </div>
+
+                {/* Botón Único: Ver Demo en Vivo (SIN ENLACE A GITHUB) */}
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ width: '100%', maxWidth: '280px', padding: '12px 20px', fontSize: '0.9rem' }}>
+                    <ExternalLink size={16} />
+                    <span>Ver Demo en Vivo</span>
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 5. SECCIÓN FAQ */}
+      <section className="container" style={{ paddingBottom: '48px' }}>
+        <div className="glass-card" style={{ padding: '28px', maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <div className="badge-glow" style={{ marginBottom: '8px' }}>
+              <HelpCircle size={15} />
+              <span>Preguntas Frecuentes</span>
+            </div>
+            <h2 className="section-title" style={{ fontSize: '1.6rem' }}>Resuelve tus Dudas al Instante</h2>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {faqs.map((faq, index) => (
+              <div key={index} className="faq-item">
+                <button 
+                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                  className="faq-button"
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown size={18} style={{ transform: openFaqIndex === index ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
+                </button>
+                {openFaqIndex === index && (
+                  <div className="faq-content">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. INSTAGRAM & CONTACTO DIRECTO */}
+      <section className="container" style={{ paddingBottom: '48px' }}>
+        <div className="glass-card cta-banner-box" style={{ padding: '32px', maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#48e5c2', fontWeight: 700 }}>
+              <InstagramIcon size={20} />
+              <span>@cristobal.webstudio (Próximamente en Instagram)</span>
+            </div>
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 800 }}>¿Hablamos sobre tu próxima página web?</h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+              Escríbeme por WhatsApp al <strong>+569 5662 8609</strong> (Cristóbal Sandoval) para revisar tu idea sin compromiso.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '380px', margin: '0 auto', width: '100%' }}>
+              <button onClick={handleWhatsappDirect} className="btn-primary btn-whatsapp" style={{ padding: '14px 24px' }}>
+                <MessageCircle size={18} />
+                <span>Hablar por WhatsApp</span>
+              </button>
+
+              <button onClick={() => setIsLoginModalOpen(true)} className="btn-secondary" style={{ padding: '12px 24px' }}>
+                <Calendar size={16} />
+                <span>Agendar Reunión Demo</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};

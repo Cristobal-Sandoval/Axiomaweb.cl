@@ -1,0 +1,286 @@
+import React, { useState } from 'react';
+import { useApp } from '../context/AppContext';
+import type { SiteId } from '../types';
+import { Lock, UserCheck, ShieldCheck, X, Key, Mail, ArrowRight } from 'lucide-react';
+
+export const LoginModal: React.FC = () => {
+  const { isLoginModalOpen, setIsLoginModalOpen, loginWithCredentials, sites } = useApp();
+
+  const [activeTab, setActiveTab] = useState<'client' | 'admin'>('client');
+  const [selectedSiteId, setSelectedSiteId] = useState<SiteId>('cardpoint');
+  const [emailInput, setEmailInput] = useState('contacto@cardpoint.cl');
+  const [passwordInput, setPasswordInput] = useState('cliente123');
+  const [adminEmail, setAdminEmail] = useState('cristobal.sandoval.balboa@gmail.com');
+  const [adminPassword, setAdminPassword] = useState('admin123');
+  const [loginError, setLoginError] = useState('');
+
+  if (!isLoginModalOpen) return null;
+
+  const handleSelectSiteQuick = (siteId: SiteId) => {
+    setSelectedSiteId(siteId);
+    setEmailInput(sites[siteId].clientEmail);
+    setPasswordInput('123456');
+    setLoginError('');
+  };
+
+  const handleClientLoginSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!emailInput || !passwordInput) {
+      setLoginError('Por favor ingresa tu correo y contraseña.');
+      return;
+    }
+    loginWithCredentials(emailInput, passwordInput, selectedSiteId);
+  };
+
+  const handleAdminLoginSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!adminPassword) {
+      setLoginError('Por favor ingresa la contraseña de administrador.');
+      return;
+    }
+    loginWithCredentials(adminEmail, adminPassword);
+  };
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(5, 6, 12, 0.88)',
+      backdropFilter: 'blur(16px)',
+      zIndex: 1000,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '16px'
+    }}>
+      <div className="glass-card" style={{
+        width: '100%',
+        maxWidth: '480px',
+        padding: '28px',
+        background: 'linear-gradient(180deg, rgba(20, 24, 48, 0.98) 0%, rgba(10, 12, 26, 0.98) 100%)',
+        border: '1px solid var(--border-glow)',
+        borderRadius: 'var(--radius-xl)',
+        boxShadow: 'var(--shadow-glow)',
+        position: 'relative'
+      }}>
+        {/* Botón Cerrar */}
+        <button 
+          onClick={() => setIsLoginModalOpen(false)}
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: '16px',
+            background: 'rgba(255,255,255,0.06)',
+            border: 'none',
+            color: '#94a3b8',
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}
+        >
+          <X size={18} />
+        </button>
+
+        {/* Encabezado del Modal */}
+        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+          <div style={{
+            width: '48px',
+            height: '48px',
+            borderRadius: '14px',
+            background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            margin: '0 auto 10px'
+          }}>
+            <Lock size={22} />
+          </div>
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 800 }}>Iniciar Sesión en el Portal</h2>
+          <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: '2px' }}>
+            Ingresa con tu correo y contraseña para acceder a tu panel.
+          </p>
+        </div>
+
+        {/* Tabs de Selección de Cuenta */}
+        <div style={{
+          display: 'flex',
+          background: 'rgba(0,0,0,0.4)',
+          padding: '4px',
+          borderRadius: '10px',
+          marginBottom: '20px',
+          border: '1px solid rgba(255,255,255,0.08)'
+        }}>
+          <button
+            type="button"
+            onClick={() => { setActiveTab('client'); setLoginError(''); }}
+            style={{
+              flex: 1,
+              padding: '10px',
+              borderRadius: '8px',
+              border: 'none',
+              background: activeTab === 'client' ? '#6366f1' : 'transparent',
+              color: 'white',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px'
+            }}
+          >
+            <UserCheck size={16} />
+            <span>Panel de Cliente</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => { setActiveTab('admin'); setLoginError(''); }}
+            style={{
+              flex: 1,
+              padding: '10px',
+              borderRadius: '8px',
+              border: 'none',
+              background: activeTab === 'admin' ? '#ec4899' : 'transparent',
+              color: 'white',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px'
+            }}
+          >
+            <ShieldCheck size={16} />
+            <span>Panel Admin (Cristóbal)</span>
+          </button>
+        </div>
+
+        {loginError && (
+          <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#fca5a5', padding: '10px', borderRadius: '8px', marginBottom: '16px', fontSize: '0.82rem', textAlign: 'center' }}>
+            {loginError}
+          </div>
+        )}
+
+        {/* FORMULARIO CLIENTE */}
+        {activeTab === 'client' ? (
+          <form onSubmit={handleClientLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            
+            {/* Chips de selección rápida de cliente demo */}
+            <div style={{ marginBottom: '4px' }}>
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Cuentas de Cliente Demo:</span>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                <button 
+                  type="button" 
+                  onClick={() => handleSelectSiteQuick('cardpoint')} 
+                  style={{ border: '1px solid #334155', background: selectedSiteId === 'cardpoint' ? '#4f46e5' : 'rgba(0,0,0,0.3)', color: 'white', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', cursor: 'pointer' }}
+                >
+                  💳 CardPoint
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => handleSelectSiteQuick('beast-training')} 
+                  style={{ border: '1px solid #334155', background: selectedSiteId === 'beast-training' ? '#10b981' : 'rgba(0,0,0,0.3)', color: 'white', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', cursor: 'pointer' }}
+                >
+                  🏋️‍♂️ Beast Gym
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => handleSelectSiteQuick('studio-vanessa')} 
+                  style={{ border: '1px solid #334155', background: selectedSiteId === 'studio-vanessa' ? '#ec4899' : 'rgba(0,0,0,0.3)', color: 'white', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', cursor: 'pointer' }}
+                >
+                  💅 Studio Vanessa
+                </button>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Correo Electrónico del Cliente:</label>
+              <div style={{ position: 'relative' }}>
+                <input 
+                  type="email" 
+                  className="form-input" 
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  placeholder="ejemplo@cliente.cl"
+                  style={{ paddingLeft: '38px' }}
+                  required
+                />
+                <Mail size={16} style={{ position: 'absolute', left: '12px', top: '14px', color: '#64748b' }} />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Contraseña:</label>
+              <div style={{ position: 'relative' }}>
+                <input 
+                  type="password" 
+                  className="form-input" 
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  placeholder="••••••••"
+                  style={{ paddingLeft: '38px' }}
+                  required
+                />
+                <Key size={16} style={{ position: 'absolute', left: '12px', top: '14px', color: '#64748b' }} />
+              </div>
+            </div>
+
+            <button type="submit" className="btn-primary" style={{ padding: '12px', marginTop: '6px' }}>
+              <span>Ingresar y Mantener Sesión</span>
+              <ArrowRight size={18} />
+            </button>
+          </form>
+        ) : (
+          /* FORMULARIO ADMIN MAESTRO */
+          <form onSubmit={handleAdminLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div className="form-group">
+              <label className="form-label">Correo Administrador Maestro:</label>
+              <div style={{ position: 'relative' }}>
+                <input 
+                  type="email" 
+                  className="form-input" 
+                  value={adminEmail}
+                  onChange={(e) => setAdminEmail(e.target.value)}
+                  style={{ paddingLeft: '38px' }}
+                  required
+                />
+                <Mail size={16} style={{ position: 'absolute', left: '12px', top: '14px', color: '#64748b' }} />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Contraseña Maestro:</label>
+              <div style={{ position: 'relative' }}>
+                <input 
+                  type="password" 
+                  className="form-input" 
+                  value={adminPassword}
+                  onChange={(e) => setAdminPassword(e.target.value)}
+                  placeholder="••••••••"
+                  style={{ paddingLeft: '38px' }}
+                  required
+                />
+                <Key size={16} style={{ position: 'absolute', left: '12px', top: '14px', color: '#64748b' }} />
+              </div>
+            </div>
+
+            <button type="submit" className="btn-primary" style={{ padding: '12px', background: 'linear-gradient(135deg, #ec4899, #8b5cf6)', marginTop: '6px' }}>
+              <ShieldCheck size={18} />
+              <span>Ingresar como Admin Maestro</span>
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+};
