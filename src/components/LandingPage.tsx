@@ -19,7 +19,8 @@ import {
   Image,
   ShoppingBag,
   Sliders,
-  CheckCircle2
+  CheckCircle2,
+  Globe
 } from 'lucide-react';
 
 const InstagramIcon = ({ size = 18 }: { size?: number }) => (
@@ -45,10 +46,12 @@ export const LandingPage: React.FC = () => {
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  // PRECIOS BASE:
+  // PRECIOS BASE COMPETITIVOS MERCADO CHILE:
   const calculateTotalEstimate = () => {
-    let base = quoteProjectType === 'express' ? 200000 : quoteProjectType === 'pro' ? 250000 : 300000;
-    if (includeDomain) base += 15000;
+    let base = quoteProjectType === 'express' ? 149990 : quoteProjectType === 'pro' ? 249990 : 299990;
+    
+    // Solo cobrar adicional por dominio si está en plan Express (ya que Pro y E-commerce lo incluyen gratis)
+    if (includeDomain && quoteProjectType === 'express') base += 15000;
     if (includeBooking) base += 20000;
     if (includeAdvancedSeo) base += 15000;
     return base;
@@ -56,16 +59,25 @@ export const LandingPage: React.FC = () => {
 
   const getSelectedExtrasList = () => {
     const selectedExtras: string[] = [];
-    if (includeDomain) selectedExtras.push('Dominio .CL / .COM e Infraestructura SSL');
+    if (quoteProjectType !== 'express') {
+      selectedExtras.push('🌐 Dominio .CL GRATIS por 1 Año (Incluido en el Plan)');
+    } else if (includeDomain) {
+      selectedExtras.push('Dominio .CL / .COM e Infraestructura SSL');
+    }
+
+    if (quoteProjectType === 'ecommerce') {
+      selectedExtras.push('💳 Integración Pasarela Mercado Pago / Webpay (Incluido)');
+    }
+
     if (includeBooking) selectedExtras.push('Agendamiento a 3 Reuniones para mantencion y cambios');
     if (includeAdvancedSeo) selectedExtras.push('Posicionamiento SEO en Buscadores + Marcado JSON-LD');
     return selectedExtras;
   };
 
   const getProjectTypeLabel = () => {
-    if (quoteProjectType === 'express') return 'Landing Básica (Desde $200.000 CLP)';
-    if (quoteProjectType === 'pro') return 'Web Pro Pyme (Desde $250.000 CLP)';
-    return 'Sitio Ventas / E-Commerce (Desde $300.000 CLP)';
+    if (quoteProjectType === 'express') return 'Landing Básica (Desde $149.990 CLP)';
+    if (quoteProjectType === 'pro') return 'Web Pro Pyme (Desde $249.990 CLP)';
+    return 'Sitio Ventas / E-Commerce (Desde $299.990 CLP)';
   };
 
   const handleSendQuoteWhatsapp = () => {
@@ -85,20 +97,20 @@ export const LandingPage: React.FC = () => {
 
   const faqs = [
     {
-      q: '¿Cómo funciona el Panel de Control Moldeable de Axioma Web?',
-      a: 'Te entregamos credenciales de acceso a tu portal corporativo donde podrás actualizar textos, imágenes de catálogo, avisos promocionales, datos de contacto y colores institucionales en tiempo real y sin necesidad de escribir código.'
+      q: '¿Qué incluye el Dominio .CL Gratis?',
+      a: 'En nuestros planes Web Pro Pyme ($249.990) y Sitio Ventas E-Commerce ($299.990), gestionamos el registro oficial de tu dominio .CL por 1 año entero completamente gratis a tu nombre.'
     },
     {
-      q: '¿Mi plataforma estará optimizada para motores de búsqueda (Google SEO)?',
-      a: 'Absolutamente. Todos nuestros desarrollos incorporan etiquetas meta estructuradas, datos enriquecidos Schema.org JSON-LD, mapa de sitio e infraestructura mobile-first optimizada para lograr alta velocidad y visibilidad en Google.'
+      q: '¿Cómo funciona el Panel de Control Moldeable de Axioma Web?',
+      a: 'Te entregamos un acceso corporativo donde puedes actualizar textos, fotos, avisos de ofertas, WhatsApp de contacto y colores institucionales en tiempo real sin necesidad de escribir código.'
+    },
+    {
+      q: '¿Mi plataforma estará optimizada para aparecer en Google?',
+      a: 'Absolutamente. Todos nuestros desarrollos incorporan etiquetas meta estructuradas, datos enriquecidos Schema.org JSON-LD y optimización de velocidad mobile-first para lograr un alto posicionamiento SEO en Google.'
     },
     {
       q: '¿Cuáles son los tiempos de entrega para cada proyecto?',
       a: 'Una Landing Básica se entrega en 3 a 5 días hábiles. Un Sitio Web Pro toma entre 7 a 10 días, y una tienda E-Commerce completa entre 10 a 14 días hábiles con pasarela de pago activa.'
-    },
-    {
-      q: '¿Qué garantía y soporte post-entrega ofrece Axioma Web?',
-      a: 'Ofrecemos soporte técnico continuo a través de nuestro equipo corporativo, monitoreo de disponibilidad SSL 256-bit y acceso permanente al portal del cliente para gestionar requerimientos de mantenimiento.'
     }
   ];
 
@@ -126,7 +138,7 @@ export const LandingPage: React.FC = () => {
           </h1>
 
           <p className="hero-subtitle">
-            Cotización transparente en vivo sin costos ocultos. Plataformas mobile-first de alto rendimiento y portal de control autoadministrable.
+            Cotización transparente en vivo sin costos ocultos. Plataformas mobile-first de alto rendimiento y soluciones autoadministrables desde $149.990 CLP.
           </p>
 
           <div className="hero-ctas" style={{ maxWidth: '440px', width: '100%', margin: '0 auto' }}>
@@ -146,7 +158,7 @@ export const LandingPage: React.FC = () => {
             <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
               <ShieldCheck size={22} style={{ color: '#48e5c2', margin: '0 auto 6px' }} />
               <span style={{ display: 'block', fontWeight: 700 }}>Certeza & Transparencia</span>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Precios Claras Sin Costos Ocultos</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Precios Claros Sin Costos Ocultos</span>
             </div>
 
             <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
@@ -189,7 +201,7 @@ export const LandingPage: React.FC = () => {
               <label className="form-label" style={{ fontWeight: 700, marginBottom: '10px' }}>Tipo de Plataforma Web:</label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
                 
-                {/* PLAN 1: LANDING BÁSICA (Desde $200.000) */}
+                {/* PLAN 1: LANDING BÁSICA (Desde $149.990) */}
                 <button 
                   type="button"
                   onClick={() => setQuoteProjectType('express')}
@@ -198,7 +210,7 @@ export const LandingPage: React.FC = () => {
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                     <strong style={{ fontSize: '1.05rem' }}>Landing Básica</strong>
-                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $200.000</span>
+                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $149.990</span>
                   </div>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
                     Página web directa ideal para presentar tu negocio rápidamente.
@@ -211,29 +223,32 @@ export const LandingPage: React.FC = () => {
                   </ul>
                 </button>
 
-                {/* PLAN 2: WEB PRO PYME (Desde $250.000) */}
+                {/* PLAN 2: WEB PRO PYME (Desde $249.990) - DESTACADO */}
                 <button 
                   type="button"
                   onClick={() => setQuoteProjectType('pro')}
                   className={`quote-type-btn ${quoteProjectType === 'pro' ? 'active' : ''}`}
-                  style={{ textAlign: 'left', padding: '16px' }}
+                  style={{ textAlign: 'left', padding: '16px', position: 'relative', border: quoteProjectType === 'pro' ? '2px solid var(--c-mint-cyan)' : undefined }}
                 >
+                  <div style={{ position: 'absolute', top: '-10px', right: '12px', background: 'var(--c-mint-cyan)', color: '#090d16', fontSize: '0.65rem', fontWeight: 800, padding: '2px 8px', borderRadius: '10px', textTransform: 'uppercase' }}>
+                    🔥 Más Popular
+                  </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                     <strong style={{ fontSize: '1.05rem' }}>Web Pro Pyme</strong>
-                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $250.000</span>
+                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $249.990</span>
                   </div>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
                     Sitio web completo multi-sección autoadministrable.
                   </p>
                   <ul style={{ listStyle: 'none', fontSize: '0.76rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: 'var(--c-mint-cyan)' }}><Globe size={13} /> 🌐 Dominio .CL GRATIS por 1 Año</li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Layers size={13} style={{ color: '#38bdf8' }} /> Multi-Sección (Inicio, Servicios, Nosotros)</li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Sliders size={13} style={{ color: '#48e5c2' }} /> Panel de Control 100% Moldeable</li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Calendar size={13} style={{ color: '#48e5c2' }} /> Agendamiento de Citas en Vivo</li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><MapPin size={13} style={{ color: '#f59e0b' }} /> Google Maps & Formulario Web</li>
                   </ul>
                 </button>
 
-                {/* PLAN 3: VENTAS / E-COMMERCE (Desde $300.000) */}
+                {/* PLAN 3: VENTAS / E-COMMERCE (Desde $299.990) */}
                 <button 
                   type="button"
                   onClick={() => setQuoteProjectType('ecommerce')}
@@ -242,15 +257,15 @@ export const LandingPage: React.FC = () => {
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                     <strong style={{ fontSize: '1.05rem' }}>Sitio Ventas / E-Commerce</strong>
-                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $300.000</span>
+                    <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $299.990</span>
                   </div>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
                     Tienda online con catálogo dinámico y cobro con tarjeta.
                   </p>
                   <ul style={{ listStyle: 'none', fontSize: '0.76rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: 'var(--c-mint-cyan)' }}><Globe size={13} /> 🌐 Dominio .CL + SSL GRATIS (1 Año)</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#38bdf8' }}><CreditCard size={13} /> 💳 Pasarela Mercado Pago / Webpay</li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><ShoppingBag size={13} style={{ color: '#48e5c2' }} /> Catálogo de Productos / TCG</li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><CreditCard size={13} style={{ color: '#38bdf8' }} /> Pagos Webpay / MercadoPago</li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Sliders size={13} style={{ color: '#38bdf8' }} /> Gestión de Stock & Panel Admin</li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><CheckCircle2 size={13} style={{ color: '#48e5c2' }} /> Todo lo de los planes anteriores</li>
                   </ul>
                 </button>
@@ -260,18 +275,20 @@ export const LandingPage: React.FC = () => {
 
             {/* Checkboxes de adicionales opcionales */}
             <div className="quote-options-box" style={{ display: 'flex', flexDirection: 'column', gap: '14px', padding: '18px', borderRadius: '14px' }}>
-              <label className="quote-checkbox-label">
-                <span>Dominio .CL / .COM e Infraestructura SSL</span>
-                <input type="checkbox" checked={includeDomain} onChange={(e) => setIncludeDomain(e.target.checked)} className="custom-checkbox" />
-              </label>
+              {quoteProjectType === 'express' && (
+                <label className="quote-checkbox-label">
+                  <span>Dominio .CL / .COM e Infraestructura SSL (+ $15.000)</span>
+                  <input type="checkbox" checked={includeDomain} onChange={(e) => setIncludeDomain(e.target.checked)} className="custom-checkbox" />
+                </label>
+              )}
 
               <label className="quote-checkbox-label">
-                <span>Agendamiento a 3 Reuniones para mantencion y cambios</span>
+                <span>Agendamiento a 3 Reuniones para mantencion y cambios (+ $20.000)</span>
                 <input type="checkbox" checked={includeBooking} onChange={(e) => setIncludeBooking(e.target.checked)} className="custom-checkbox" />
               </label>
 
               <label className="quote-checkbox-label">
-                <span>Posicionamiento SEO en Buscadores + Marcado JSON-LD</span>
+                <span>Posicionamiento SEO en Buscadores + Marcado JSON-LD (+ $15.000)</span>
                 <input type="checkbox" checked={includeAdvancedSeo} onChange={(e) => setIncludeAdvancedSeo(e.target.checked)} className="custom-checkbox" />
               </label>
             </div>
