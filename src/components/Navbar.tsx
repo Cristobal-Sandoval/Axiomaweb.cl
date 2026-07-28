@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { ShieldCheck, MessageCircle, Sparkles, Globe, LogIn, LogOut, Sliders, Sun, Moon, Tag, X } from 'lucide-react';
+import { ShieldCheck, MessageCircle, Globe, LogIn, LogOut, Sliders, Sun, Moon, Tag, X } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { viewMode, setViewMode, userSession, setIsLoginModalOpen, logout, themeMode, toggleThemeMode } = useApp();
   const [showPromoBanner, setShowPromoBanner] = useState(true);
 
   const handleWhatsappClick = () => {
-    window.open('https://wa.me/56956628609?text=Hola%20Cristóbal,%20vi%20tu%20sitio%20web%20y%20quiero%20aprovechar%20el%2010%25%20de%20descuento%20por%20inauguración', '_blank');
+    window.open('https://wa.me/56956628609?text=Hola%20AxiomaWeb%20Studio,%20quiero%20cotizar%20mi%20sitio%20web%20con%20el%2010%25%20de%20descuento%20por%20inauguración', '_blank');
   };
 
   return (
     <>
-      {/* Banner Flotante de Promoción por Inauguración (Responsive Mobile-Optimized) */}
+      {/* Banner Flotante de Promoción por Inauguración (AxiomaWeb Studio) */}
       {showPromoBanner && (
         <div className="promo-top-banner">
           <div className="container promo-banner-inner">
             
-            {/* VISTA DESKTOP (pantallas grandes) */}
+            {/* VISTA DESKTOP */}
             <div className="promo-desktop-content">
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="promo-tag-badge">
@@ -25,7 +25,7 @@ export const Navbar: React.FC = () => {
                   <span>10% OFF INAUGURACIÓN</span>
                 </span>
                 <span className="promo-banner-text">
-                  🎉 ¡10% de descuento por inauguración en todos los proyectos web!
+                  🎉 ¡10% de descuento por inauguración en todos los proyectos web de AxiomaWeb Studio!
                 </span>
               </div>
 
@@ -44,14 +44,14 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
 
-            {/* VISTA MOBILE COMPACTA (1 Sola Línea Ultra Eficiente) */}
+            {/* VISTA MOBILE COMPACTA (1 Sola Línea) */}
             <div className="promo-mobile-content">
               <div onClick={handleWhatsappClick} style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', flex: 1, overflow: 'hidden' }}>
                 <span className="promo-tag-badge" style={{ padding: '2px 6px', fontSize: '0.68rem', whiteSpace: 'nowrap' }}>
                   10% OFF
                 </span>
                 <span style={{ fontWeight: 700, fontSize: '0.74rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                  🎉 Inauguración Web Studio
+                  🎉 Inauguración AxiomaWeb Studio
                 </span>
               </div>
 
@@ -78,13 +78,13 @@ export const Navbar: React.FC = () => {
       <header className="navbar">
         <div className="container navbar-inner" style={{ margin: '0 auto', maxWidth: '1200px' }}>
           <a href="#" onClick={(e) => { e.preventDefault(); setViewMode('landing'); }} className="brand-logo">
-            <div className="logo-icon">
-              <Sparkles size={20} />
+            <div className="logo-icon" style={{ padding: '2px', background: 'transparent' }}>
+              <img src="/images/axiomaweb_icon.png" alt="AxiomaWeb Icon" style={{ width: '100%', height: '100%', borderRadius: '8px', objectFit: 'cover' }} />
             </div>
             <div>
-              <span className="text-gradient" style={{ fontSize: '1.15rem' }}>Cristóbal Sandoval</span>
-              <span style={{ display: 'block', fontSize: '0.68rem', color: themeMode === 'light' ? '#2d4a60' : '#a2c4d4', fontWeight: 500, letterSpacing: '0.04em' }}>
-                WEB STUDIO & SOFTWARE
+              <span className="text-gradient" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>AxiomaWeb</span>
+              <span style={{ display: 'block', fontSize: '0.65rem', color: themeMode === 'light' ? '#2d4a60' : '#a2c4d4', fontWeight: 700, letterSpacing: '0.06em' }}>
+                STUDIO & DIGITAL PARTNERS
               </span>
             </div>
           </a>

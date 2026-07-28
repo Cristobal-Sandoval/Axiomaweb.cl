@@ -1,6 +1,8 @@
-# 🚀 Cristóbal Sandoval — Web Studio & Client Portal
+# 🚀 AxiomaWeb Studio & Digital Partners (axiomaweb.cl)
 
-Plataforma web profesional y sistema integral de ventas para agencia de desarrollo web. Diseñado **Mobile-First**, optimizado para SEO, con **Cotizador Instantáneo en Vivo**, **Checkout Mercado Pago / Webpay**, **Banners 10% OFF**, **Portafolio en Laptop Mockup** y **Panel de Control Autoadministrable** para clientes y administrador maestro.
+Plataforma web profesional y sistema integral de ventas para la agencia de desarrollo web **AxiomaWeb Studio** (`axiomaweb.cl`). Diseñado **Mobile-First**, optimizado para SEO Google Schema.org, con **Cotizador Instantáneo en Vivo**, **Checkout Mercado Pago / Webpay**, **Banners 10% OFF**, **Portafolio en Laptop Mockup** y **Panel de Control Autoadministrable** para clientes y administrador maestro.
+
+> *Desarrollo web fundamentado en certeza, estrategia y resultados de alta conversión.*
 
 ---
 
@@ -9,10 +11,10 @@ Plataforma web profesional y sistema integral de ventas para agencia de desarrol
 ### 📱 1. Landing Page & Experiencia Mobile-First
 - **Promoción Top Sticky (10% OFF)**: Barra superior ultra compacta de 1 sola línea en celulares con cupón promocional `INAUGURACION10`.
 - **Hero Interactivo**: Acceso directo al botón de cotización por WhatsApp (+569 5662 8609) y selector de modo **Claro / Oscuro**.
-- **Carrusel de Banners Promocionales**: Rotación automática de fotografías profesionales de alta calidad.
+- **Carrusel de Banners Promocionales**: Rotación de fotografías profesionales de desarrollo y estudio web.
 - **Portafolio en Laptop Mockup**: Exhibición de proyectos reales (*CardPoint TCG*, *Beast Training Gym*, *Studio Vanessa Aravena*) dentro de maquetas digitales de laptops con capturas en vivo.
 
-### 💰 2. Cotizador Instantáneo Interactivo
+### 💰 2. Cotizador Instantáneo AxiomaWeb
 - **Planes Claros Desde**:
   - **Landing Básica**: Desde **$200.000 CLP**
   - **Web Pro Pyme**: Desde **$250.000 CLP**
@@ -26,10 +28,10 @@ Plataforma web profesional y sistema integral de ventas para agencia de desarrol
   - 💳 **Pagar con Tarjeta (Mercado Pago)**: Modal de pago con tarjeta de crédito, débito, Webpay y validación de cupones de descuento en tiempo real.
 
 ### 🔐 3. Panel de Control Autoadministrable (Portal del Cliente & Admin)
-- **Portal del Cliente**:
+- **Portal del Cliente — AxiomaWeb**:
   - Modificación de banners, ofertas, WhatsApp de contacto y horarios en tiempo real.
   - Envío de solicitudes de cambios y seguimiento de estado (Pendiente, En Proceso, Completado).
-  - Mensajería directa con Cristóbal Sandoval.
+  - Mensajería directa con el equipo técnico de AxiomaWeb Studio.
   - Agendamiento de reuniones por Google Meet.
 - **Panel Admin Maestro**:
   - Control global de todos los sitios de clientes.
@@ -40,12 +42,12 @@ Plataforma web profesional y sistema integral de ventas para agencia de desarrol
 
 ## 🎨 Paleta de Colores Exclusiva
 
-El diseño está construido sobre una paleta personalizada de 4 tonos armónicos:
+El diseño está construido sobre la paleta corporativa de 4 tonos armónicos:
 
 | Color | Hex | Uso |
 | :--- | :--- | :--- |
-| **Navy Dark** | `#201a35` | Fondo principal y cuerpo de tarjetas |
-| **Slate Blue** | `#3b5e78` | Bordes nítidos y contenedores secundarios |
+| **Navy Executive** | `#201a35` | Fondo principal y cuerpo de tarjetas |
+| **Slate Steel** | `#3b5e78` | Bordes nítidos y contenedores secundarios |
 | **Mint Cyan** | `#48e5c2` | Acentos principales, botones WhatsApp y badges |
 | **Ice Mint** | `#d6fcf7` | Tipografía principal y fondo en Modo Claro |
 
@@ -57,6 +59,7 @@ El diseño está construido sobre una paleta personalizada de 4 tonos armónicos
 - **Bundler**: Vite
 - **Estilos**: Vanilla CSS con variables CSS personalizadas y diseño responsivo
 - **Iconografía**: Lucide React
+- **SEO & Metadatos**: Google Schema.org JSON-LD (`ProfessionalService`), OpenGraph, Twitter Cards
 - **Pagos**: Mercado Pago / Webpay Checkout Simulation
 
 ---
@@ -82,9 +85,10 @@ npm run build
 
 ---
 
-## 👤 Contacto & Autor
+## 👤 Contacto Corporativo — AxiomaWeb Studio
 
-- **Desarrollador**: Cristóbal Sandoval Balboa
-- **WhatsApp**: [+569 5662 8609](https://wa.me/56956628609)
-- **Email**: `cristobal.sandoval.balboa@gmail.com`
+- **Sitio Web Oficial**: [axiomaweb.cl](https://axiomaweb.cl)
+- **Lead Developer & Founder**: Cristóbal Sandoval Balboa
+- **WhatsApp Corporativo**: [+569 5662 8609](https://wa.me/56956628609)
+- **Email Corporativo**: `contacto@axiomaweb.cl`
 - **Ubicación**: Concepción, Chile

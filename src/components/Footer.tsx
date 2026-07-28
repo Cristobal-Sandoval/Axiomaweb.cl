@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, MessageCircle, Mail, MapPin, Search } from 'lucide-react';
+import { MessageCircle, Mail, MapPin, Search } from 'lucide-react';
 
 const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -24,30 +24,30 @@ export const Footer: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '40px', marginBottom: '40px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', justifyContent: 'center' }}>
-              <div className="logo-icon">
-                <Sparkles size={20} />
+              <div className="logo-icon" style={{ width: '32px', height: '32px', padding: '2px', background: 'transparent' }}>
+                <img src="/images/axiomaweb_icon.png" alt="AxiomaWeb Icon" style={{ width: '100%', height: '100%', borderRadius: '6px', objectFit: 'cover' }} />
               </div>
-              <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)' }}>Cristóbal Sandoval</span>
+              <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)' }}>AxiomaWeb Studio</span>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, textAlign: 'center' }}>
-              Desarrollo de páginas web profesionales, rápidas, seguras y 100% autoadministrables vía panel de control. Posicionamiento SEO en buscadores.
+              Desarrollo web fundamentado en certeza, estrategia y resultados. Plataformas profesionales, ultrarrápidas y 100% autoadministrables.
             </p>
           </div>
 
           <div style={{ textAlign: 'center' }}>
-            <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '16px' }}>Contacto Directo</h4>
+            <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '16px' }}>Contacto Corporativo</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem', color: 'var(--text-muted)', alignItems: 'center' }}>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <MessageCircle size={16} style={{ color: 'var(--c-mint-cyan)' }} />
-                <a href="https://wa.me/56956628609" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>+569 5662 8609 (Cristóbal)</a>
+                <a href="https://wa.me/56956628609" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>+569 5662 8609 (Cristóbal Sandoval)</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Mail size={16} style={{ color: 'var(--accent-secondary)' }} />
-                <span>cristobal.sandoval.balboa@gmail.com</span>
+                <a href="mailto:contacto@axiomaweb.cl" style={{ color: 'inherit' }}>contacto@axiomaweb.cl</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <MapPin size={16} style={{ color: 'var(--c-mint-cyan)' }} />
-                <span>Concepción, Chile</span>
+                <span>Concepción, Chile — axiomaweb.cl</span>
               </li>
             </ul>
           </div>
@@ -58,19 +58,19 @@ export const Footer: React.FC = () => {
               <a href="https://linkedin.com/in/cristobalsandovaldev" target="_blank" rel="noopener noreferrer" className="btn-secondary btn-sm" title="LinkedIn" style={{ width: '40px', height: '40px', padding: 0, borderRadius: '50%' }}>
                 <LinkedinIcon size={16} />
               </a>
-              <a href="#" className="btn-secondary btn-sm" title="Instagram @cristobal.webstudio" style={{ width: '40px', height: '40px', padding: 0, borderRadius: '50%' }}>
+              <a href="#" className="btn-secondary btn-sm" title="Instagram @axiomaweb.cl" style={{ width: '40px', height: '40px', padding: 0, borderRadius: '50%' }}>
                 <InstagramIcon size={16} />
               </a>
             </div>
             <div className="badge-glow badge-emerald" style={{ fontSize: '0.78rem' }}>
               <Search size={14} />
-              <span>Optimizado para Búsquedas en Línea</span>
+              <span>Optimizado para Búsquedas en Google</span>
             </div>
           </div>
         </div>
 
         <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '24px', textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-dim)' }}>
-          © {new Date().getFullYear()} Cristóbal Sandoval Balboa — Web Studio & Software Development. Todos los derechos reservados.
+          © {new Date().getFullYear()} AxiomaWeb Studio & Digital Partners (axiomaweb.cl). Todos los derechos reservados.
         </div>
       </div>
     </footer>

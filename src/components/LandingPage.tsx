@@ -46,9 +46,6 @@ export const LandingPage: React.FC = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // PRECIOS BASE (LO BÁSICO DE CADA PLAN):
-  // 1. Landing Básica: Base $200.000 CLP (Desde $200.000)
-  // 2. Web Pro Pyme: Base $250.000 CLP (Desde $250.000)
-  // 3. Sitio Ventas / E-Commerce: Base $300.000 CLP (Desde $300.000)
   const calculateTotalEstimate = () => {
     let base = quoteProjectType === 'express' ? 200000 : quoteProjectType === 'pro' ? 250000 : 300000;
     if (includeDomain) base += 15000;
@@ -77,37 +74,37 @@ export const LandingPage: React.FC = () => {
     const selectedExtras = getSelectedExtrasList();
     const extrasFormatted = selectedExtras.length > 0 ? selectedExtras.map(e => `• ${e}`).join('%0A') : '• Ningún adicional';
 
-    const message = `Hola Cristóbal, estuve cotizando en tu página web:%0A%0A📌 *Tipo de Proyecto:* ${typeLabel}%0A%0A📋 *Opciones Seleccionadas:*%0A${extrasFormatted}%0A%0A💰 *Presupuesto Estimado Total:* $${total.toLocaleString('es-CL')} CLP%0A%0A¿Podemos coordinar los detalles para comenzar?`;
+    const message = `Hola AxiomaWeb Studio, estuve cotizando en axiomaweb.cl:%0A%0A📌 *Tipo de Proyecto:* ${typeLabel}%0A%0A📋 *Opciones Seleccionadas:*%0A${extrasFormatted}%0A%0A💰 *Presupuesto Estimado Total:* $${total.toLocaleString('es-CL')} CLP%0A%0A¿Podemos coordinar los detalles para comenzar?`;
 
     window.open(`https://wa.me/56956628609?text=${message}`, '_blank');
   };
 
   const handleWhatsappDirect = () => {
-    window.open('https://wa.me/56956628609?text=Hola%20Cristóbal,%20quiero%20cotizar%20mi%20página%20web', '_blank');
+    window.open('https://wa.me/56956628609?text=Hola%20AxiomaWeb%20Studio,%20quiero%20cotizar%20mi%20página%20web', '_blank');
   };
 
   const faqs = [
     {
-      q: '¿Cómo funciona el Panel de Control Moldeable?',
-      a: 'Te entrego un acceso exclusivo donde puedes cambiar títulos, fotos, banners de ofertas, WhatsApp de contacto y colores con un par de clics. Los cambios se reflejan de inmediato en tu web sin tener que pagar a un programador cada vez.'
+      q: '¿Cómo funciona el Panel de Control Moldeable de AxiomaWeb?',
+      a: 'Te entrego un acceso exclusivo al portal de clientes donde puedes cambiar títulos, fotos, banners de ofertas, WhatsApp de contacto y colores con un par de clics. Los cambios se reflejan de inmediato en tu web sin tener que pagar a un programador cada vez.'
     },
     {
-      q: '¿Mi página web aparecerá en las búsquedas en línea?',
-      a: 'Sí, todas las páginas incorporan etiquetas meta avanzadas, datos estructurados Schema.org y optimización de velocidad mobile-first para lograr un excelente posicionamiento SEO.'
+      q: '¿Mi página web aparecerá en Google?',
+      a: 'Sí, en AxiomaWeb Studio todas las páginas incorporan etiquetas meta avanzadas, datos estructurados Schema.org y optimización de velocidad mobile-first para lograr un excelente posicionamiento SEO.'
     },
     {
       q: '¿Cuánto tiempo tarda en estar lista mi web?',
       a: 'Una Landing Express está lista en 3 a 5 días hábiles. Un Sitio Web Pro toma entre 7 a 12 días, dependiendo de los contenidos y funcionalidades.'
     },
     {
-      q: '¿Tendré soporte si necesito ayuda?',
-      a: 'Por supuesto. Cuentas con atención directa por WhatsApp (+569 5662 8609), correo electrónico y la posibilidad de agendar reuniones de avance por Google Meet.'
+      q: '¿Tendré soporte directo con el desarrollador?',
+      a: 'Por supuesto. Cuentas con atención directa por WhatsApp (+569 5662 8609) con Cristóbal Sandoval (Founder de AxiomaWeb), correo corporativo (contacto@axiomaweb.cl) y la posibilidad de agendar reuniones de avance por Google Meet.'
     }
   ];
 
   return (
     <div className="landing-container">
-      {/* Modal Checkout Mercado Pago con Cupón 30% OFF */}
+      {/* Modal Checkout Mercado Pago con Cupón 10% OFF */}
       <MercadoPagoModal 
         isOpen={isMpModalOpen}
         onClose={() => setIsMpModalOpen(false)}
@@ -116,26 +113,26 @@ export const LandingPage: React.FC = () => {
         selectedExtras={getSelectedExtrasList()}
       />
 
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION AXIOMAWEB */}
       <section className="hero-section">
         <div className="container">
           <div className="badge-glow" style={{ marginBottom: '16px' }}>
             <Zap size={15} style={{ color: '#48e5c2' }} />
-            <span>Desarrollo Web Ultra Rápido • Puntuación 100/100 en Rendimiento</span>
+            <span>AxiomaWeb Studio • Certeza, Estrategia & Desarrollo Web de Alta Conversión</span>
           </div>
 
           <h1 className="hero-title">
-            Vende más con una Web <span className="text-gradient">Moderna & Rápida</span> 100% <span className="text-gradient-cyan">Moldeable por Ti</span>
+            Desarrollo Web Fundamentado en <span className="text-gradient">Certeza, Estrategia</span> & <span className="text-gradient-cyan">Resultados Reales</span>
           </h1>
 
           <p className="hero-subtitle">
-            Sin complicarte con código: cambia tus banners, precios y anuncios en segundos desde tu propio panel de control.
+            Cotización transparente desde el primer segundo sin costos ocultos. Sitios mobile-first ultrarrápidos y panel de control autoadministrable sin código.
           </p>
 
           <div className="hero-ctas" style={{ maxWidth: '520px', width: '100%', margin: '0 auto' }}>
             <button onClick={handleWhatsappDirect} className="btn-primary btn-whatsapp" style={{ padding: '16px 32px', fontSize: '1.05rem', whiteSpace: 'nowrap' }}>
               <MessageCircle size={22} />
-              <span>Cotizar en WhatsApp (+569 5662 8609)</span>
+              <span>Cotizar con AxiomaWeb (+569 5662 8609)</span>
             </button>
           </div>
 
@@ -143,19 +140,19 @@ export const LandingPage: React.FC = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', marginTop: '36px', maxWidth: '640px', margin: '36px auto 0' }}>
             <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
               <ShieldCheck size={22} style={{ color: '#48e5c2', margin: '0 auto 6px' }} />
-              <span style={{ display: 'block', fontWeight: 700 }}>Seguridad SSL</span>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>256-bit Incluido</span>
+              <span style={{ display: 'block', fontWeight: 700 }}>Certeza & Transparencia</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Precios Claros Sin Costos Ocultos</span>
             </div>
 
             <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
               <Search size={22} style={{ color: '#38bdf8', margin: '0 auto 6px' }} />
               <span style={{ display: 'block', fontWeight: 700 }}>SEO en Buscadores</span>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Posicionamiento Web</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Posicionamiento Google</span>
             </div>
 
             <div className="glass-card" style={{ padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>
               <Smartphone size={22} style={{ color: '#48e5c2', margin: '0 auto 6px' }} />
-              <span style={{ display: 'block', fontWeight: 700 }}>Mobile First</span>
+              <span style={{ display: 'block', fontWeight: 700 }}>Mobile-First Native</span>
               <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>100% Adaptable</span>
             </div>
           </div>
@@ -167,13 +164,13 @@ export const LandingPage: React.FC = () => {
         <BannerCarousel />
       </section>
 
-      {/* 3. COTIZADOR INSTANTÁNEO INTERACTIVO */}
+      {/* 3. COTIZADOR INSTANTÁNEO AXIOMAWEB */}
       <section className="container" style={{ margin: '48px auto' }}>
         <div className="glass-card cotizador-box" style={{ padding: '32px' }}>
           <div style={{ textAlign: 'center', marginBottom: '24px' }}>
             <div className="badge-glow badge-emerald" style={{ marginBottom: '8px' }}>
               <Calculator size={15} />
-              <span>Cotizador Instantáneo Mobile-First</span>
+              <span>Cotizador Instantáneo AxiomaWeb</span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Calcula el Valor de tu Web en Segundos</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
@@ -182,7 +179,7 @@ export const LandingPage: React.FC = () => {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
-            {/* Opciones de tipo de proyecto con descripciones detalladas y precios DESDE */}
+            {/* Opciones de tipo de proyecto */}
             <div className="form-group">
               <label className="form-label" style={{ fontWeight: 700, marginBottom: '10px' }}>Tipo de Plataforma Web:</label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
@@ -302,39 +299,36 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. SECCIÓN PORTAFOLIO EN MARCO MOCKUP DE LAPTOP (EXACTO SOLICITADO POR EL USUARIO) */}
+      {/* 4. SECCIÓN PORTAFOLIO AXIOMAWEB */}
       <section className="container" style={{ padding: '24px 0 48px' }}>
         <div className="section-header">
           <div className="badge-glow" style={{ marginBottom: '10px' }}>
             <Layers size={15} />
             <span>Casos de Éxito & Portafolio</span>
           </div>
-          <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Páginas Creadas por Cristóbal Sandoval</h2>
+          <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Casos de Éxito Desarrollados por AxiomaWeb</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
-            Presentación en maqueta digital de alta definición para nuestros clientes:
+            Explora las plataformas web reales que hemos implementado para nuestros clientes:
           </p>
         </div>
 
         <div className="portfolio-grid">
           {projectsShowcase.map((project) => {
-            // Extracción de dominio en mayúsculas (ej: CARDPOINT.CL)
             const domainName = project.liveUrl.replace('https://', '').replace('/', '').toUpperCase();
 
             return (
               <div key={project.id} className="glass-card portfolio-card">
                 
-                {/* MARCO LAPTOP MOCKUP REALISTA (COMO LA IMAGEN ADJUNTADA) */}
+                {/* MARCO LAPTOP MOCKUP REALISTA */}
                 <div className="laptop-mockup-container">
                   <div className="laptop-frame">
                     <div className="laptop-camera-dot"></div>
                     <div className="laptop-screen">
-                      {/* Cabecera Simulada de la Web dentro de la Laptop */}
                       <div style={{ background: '#3b5e78', padding: '6px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'white', fontSize: '0.7rem', position: 'relative', zIndex: 2 }}>
                         <strong style={{ fontSize: '0.75rem' }}>{project.title}</strong>
                         <span style={{ fontSize: '0.65rem', background: 'rgba(255,255,255,0.2)', padding: '2px 6px', borderRadius: '4px' }}>{project.statusText}</span>
                       </div>
 
-                      {/* Imagen Real del Proyecto en Vivo */}
                       {project.previewImage ? (
                         <div style={{ width: '100%', height: 'calc(100% - 28px)', overflow: 'hidden' }}>
                           <img 
@@ -344,7 +338,6 @@ export const LandingPage: React.FC = () => {
                           />
                         </div>
                       ) : (
-                        /* Fallback Contenido Visual */
                         <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100% - 28px)', textAlign: 'center', background: 'linear-gradient(180deg, #201a35 0%, #151025 100%)' }}>
                           <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'white', marginBottom: '8px' }}>
                             {project.subtitle}
@@ -357,24 +350,20 @@ export const LandingPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Base de la Laptop */}
                   <div className="laptop-keyboard-base">
                     <div className="laptop-trackpad-notch"></div>
                   </div>
 
-                  {/* Texto de Dominio y Categoría centrado debajo de la laptop */}
                   <h3 className="laptop-domain-title">{domainName}</h3>
                   <div className="laptop-category-sub">{project.subtitle}</div>
                 </div>
 
-                {/* Etiquetas de Tecnología */}
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '16px' }}>
                   {project.techStack.map((tech, idx) => (
                     <span key={idx} className="tech-tag">{tech}</span>
                   ))}
                 </div>
 
-                {/* Botón Único: Ver Demo en Vivo (SIN ENLACE A GITHUB) */}
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ width: '100%', maxWidth: '280px', padding: '12px 20px', fontSize: '0.9rem' }}>
                     <ExternalLink size={16} />
@@ -419,17 +408,17 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. INSTAGRAM & CONTACTO DIRECTO */}
+      {/* 6. INSTAGRAM & CONTACTO DIRECTO AXIOMAWEB */}
       <section className="container" style={{ paddingBottom: '48px' }}>
         <div className="glass-card cta-banner-box" style={{ padding: '32px', maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#48e5c2', fontWeight: 700 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--c-mint-cyan)', fontWeight: 700 }}>
               <InstagramIcon size={20} />
-              <span>@cristobal.webstudio (Próximamente en Instagram)</span>
+              <span>@axiomaweb.cl (Próximamente en Instagram)</span>
             </div>
-            <h3 style={{ fontSize: '1.6rem', fontWeight: 800 }}>¿Hablamos sobre tu próxima página web?</h3>
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 800 }}>¿Hablamos sobre el próximo sitio web para tu empresa?</h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Escríbeme por WhatsApp al <strong>+569 5662 8609</strong> (Cristóbal Sandoval) para revisar tu idea sin compromiso.
+              Escríbenos por WhatsApp al <strong>+569 5662 8609</strong> (Cristóbal Sandoval — AxiomaWeb Studio) para revisar tu proyecto sin compromiso.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '380px', margin: '0 auto', width: '100%' }}>
