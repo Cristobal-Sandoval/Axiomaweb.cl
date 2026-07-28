@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CreditCard, CheckCircle2, ShieldCheck, X, Tag, ArrowRight, Lock } from 'lucide-react';
+import { CreditCard, CheckCircle2, ShieldCheck, X, Tag, ArrowRight, Lock, Loader } from 'lucide-react';
 import { APP_CONFIG } from '../config/credentials';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 interface MercadoPagoModalProps {
   isOpen: boolean;
@@ -28,6 +29,9 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
   const [selectedMethod, setSelectedMethod] = useState<'card' | 'webpay' | 'mp_wallet'>('card');
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentError, setPaymentError] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const modalRef = useFocusTrap(isOpen);
 
   if (!isOpen) return null;
 
@@ -48,7 +52,7 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
   const discountAmount = Math.round((baseAmountCLP * discountPercent) / 100);
   const finalAmountCLP = baseAmountCLP - discountAmount;
 
-  const handleProcessPayment = (e: React.FormEvent) => {
+  const handleProcessPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setPaymentError('');
 
@@ -57,11 +61,19 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
       return;
     }
 
+    setIsProcessing(true);
+    await new Promise(r => setTimeout(r, 1200));
+    setIsProcessing(false);
     setPaymentSuccess(true);
   };
 
   return (
-    <div style={{
+    <div 
+      ref={modalRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Pagar con Mercado Pago"
+      style={{
       position: 'fixed',
       top: 0, left: 0, right: 0, bottom: 0,
       background: 'rgba(5, 6, 12, 0.92)',
@@ -84,6 +96,7 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
         position: 'relative'
       }}>
         <button 
+          data-close-modal
           onClick={onClose}
           style={{
             position: 'absolute', top: '16px', right: '16px',
@@ -235,10 +248,15 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
                 type="submit" 
                 className="btn-primary" 
                 style={{ padding: '14px', background: 'linear-gradient(135deg, #009ee3, #0072bb)', marginTop: '8px' }}
+                disabled={isProcessing}
               >
-                <Lock size={16} />
-                <span>Pagar con Mercado Pago (${finalAmountCLP.toLocaleString('es-CL')} CLP)</span>
-                <ArrowRight size={18} />
+                {isProcessing ? (
+                  <Loader size={18} className="spinner" />
+                ) : (
+                  <Lock size={16} />
+                )}
+                <span>{isProcessing ? 'Procesando pago...' : `Pagar con Mercado Pago (${finalAmountCLP.toLocaleString('es-CL')} CLP)`}</span>
+                {!isProcessing && <ArrowRight size={18} />}
               </button>
 
               <div style={{ textAlign: 'center', fontSize: '0.75rem', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>

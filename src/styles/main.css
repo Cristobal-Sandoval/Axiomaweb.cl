@@ -871,6 +871,90 @@ main > * {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Focus visible styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--c-mint-cyan);
+  outline-offset: 2px;
+}
+
+body.light-mode :focus-visible {
+  outline-color: #0d9488;
+}
+
+/* Form validation visual feedback */
+.form-input:user-invalid,
+.form-select:user-invalid,
+.form-textarea:user-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+.form-input:user-valid,
+.form-select:user-valid,
+.form-textarea:user-valid {
+  border-color: #10b981;
+  box-shadow: 0 0 0 1px #10b981;
+}
+
+/* Button disabled state */
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Skeleton loading animation */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, rgba(72, 229, 194, 0.08) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+body.light-mode .skeleton {
+  background: linear-gradient(90deg, #e6fffa 25%, #ccfbf1 50%, #e6fffa 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Smooth hover effects for interactive elements */
+a, button {
+  transition: all 0.2s ease;
+}
+
+.btn-primary:not(:disabled):hover,
+.btn-secondary:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary:not(:disabled):active,
+.btn-secondary:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-glow);
+}
+
 /* ==========================================================================
    MEDIA QUERIES
    ========================================================================== */

@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
         <div className="container navbar-inner" style={{ margin: '0 auto', maxWidth: '1200px' }}>
           <a href="#" onClick={(e) => { e.preventDefault(); setViewMode('landing'); }} className="brand-logo" aria-label="Ir al inicio de Axioma Web">
             <div className="logo-icon" style={{ padding: '2px', background: 'transparent' }}>
-              <img src="/images/axiomaweb_icon.png" alt="Axioma Web Icon" style={{ width: '100%', height: '100%', borderRadius: '8px', objectFit: 'cover' }} />
+              <img src="/images/axiomaweb_icon.png" alt="Axioma Web - Desarrollo Web y Software Corporativo en Chile" style={{ width: '100%', height: '100%', borderRadius: '8px', objectFit: 'cover' }} />
             </div>
             <div>
               <span className="text-gradient" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>Axioma Web</span>

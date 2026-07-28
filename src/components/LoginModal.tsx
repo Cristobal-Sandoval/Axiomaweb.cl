@@ -4,6 +4,7 @@ import type { SiteId } from '../types';
 import { Lock, UserCheck, ShieldCheck, X, Key, Mail, ArrowRight } from 'lucide-react';
 import { APP_CONFIG } from '../config/credentials';
 import { sanitizeEmail } from '../utils/sanitize';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 export const LoginModal: React.FC = () => {
   const { isLoginModalOpen, setIsLoginModalOpen, loginWithCredentials, sites } = useApp();
@@ -15,6 +16,9 @@ export const LoginModal: React.FC = () => {
   const [adminEmail, setAdminEmail] = useState(APP_CONFIG.admin.emails[0]);
   const [adminPassword, setAdminPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const modalRef = useFocusTrap(isLoginModalOpen);
 
   if (!isLoginModalOpen) return null;
 
@@ -25,28 +29,51 @@ export const LoginModal: React.FC = () => {
     setLoginError('');
   };
 
-  const handleClientLoginSubmit = (e: React.FormEvent) => {
+  const handleClientLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoginError('');
     const cleanEmail = sanitizeEmail(emailInput);
     if (!cleanEmail || !passwordInput) {
       setLoginError('Por favor ingresa tu correo y contraseña.');
       return;
     }
-    loginWithCredentials(cleanEmail, passwordInput, selectedSiteId);
+    setIsSubmitting(true);
+    try {
+      await new Promise(r => setTimeout(r, 400));
+      loginWithCredentials(cleanEmail, passwordInput, selectedSiteId);
+    } catch {
+      setLoginError('Error al iniciar sesión. Intenta nuevamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleAdminLoginSubmit = (e: React.FormEvent) => {
+  const handleAdminLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoginError('');
     const cleanEmail = sanitizeEmail(adminEmail);
     if (!cleanEmail || !adminPassword) {
       setLoginError('Por favor ingresa correo y contraseña de administrador.');
       return;
     }
-    loginWithCredentials(cleanEmail, adminPassword);
+    setIsSubmitting(true);
+    try {
+      await new Promise(r => setTimeout(r, 400));
+      loginWithCredentials(cleanEmail, adminPassword);
+    } catch {
+      setLoginError('Error al iniciar sesión. Intenta nuevamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div style={{
+    <div 
+      ref={modalRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Iniciar sesión en el portal"
+      style={{
       position: 'fixed',
       top: 0,
       left: 0,
@@ -72,6 +99,7 @@ export const LoginModal: React.FC = () => {
       }}>
         {/* Botón Cerrar */}
         <button 
+          data-close-modal
           onClick={() => setIsLoginModalOpen(false)}
           style={{
             position: 'absolute',
@@ -239,9 +267,13 @@ export const LoginModal: React.FC = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn-primary" style={{ padding: '12px', marginTop: '6px' }}>
-              <span>Ingresar y Mantener Sesión</span>
-              <ArrowRight size={18} />
+            <button type="submit" className="btn-primary" style={{ padding: '12px', marginTop: '6px' }} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="spinner" style={{ width: '18px', height: '18px', borderWidth: '2px' }} />
+              ) : (
+                <ArrowRight size={18} />
+              )}
+              <span>{isSubmitting ? 'Ingresando...' : 'Ingresar y Mantener Sesión'}</span>
             </button>
           </form>
         ) : (
@@ -278,9 +310,13 @@ export const LoginModal: React.FC = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn-primary" style={{ padding: '12px', background: 'linear-gradient(135deg, #ec4899, #8b5cf6)', marginTop: '6px' }}>
-              <ShieldCheck size={18} />
-              <span>Ingresar como Admin Maestro</span>
+            <button type="submit" className="btn-primary" style={{ padding: '12px', background: 'linear-gradient(135deg, #ec4899, #8b5cf6)', marginTop: '6px' }} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="spinner" style={{ width: '18px', height: '18px', borderWidth: '2px' }} />
+              ) : (
+                <ShieldCheck size={18} />
+              )}
+              <span>{isSubmitting ? 'Ingresando...' : 'Ingresar como Admin Maestro'}</span>
             </button>
           </form>
         )}

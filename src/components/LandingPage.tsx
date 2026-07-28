@@ -355,7 +355,7 @@ export const LandingPage: React.FC = () => {
                         <div style={{ width: '100%', height: 'calc(100% - 28px)', overflow: 'hidden' }}>
                           <img 
                             src={project.previewImage} 
-                            alt={`Preview ${project.title}`}
+                            alt={`Captura de pantalla del sitio web ${project.title} - ${project.subtitle} desarrollado por Axioma Web`}
                             loading="lazy"
                             decoding="async"
                             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}

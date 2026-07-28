@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', justifyContent: 'center' }}>
               <div className="logo-icon" style={{ width: '32px', height: '32px', padding: '2px', background: 'transparent' }}>
-                <img src="/images/axiomaweb_icon.png" alt="Axioma Web Icon" loading="lazy" style={{ width: '100%', height: '100%', borderRadius: '6px', objectFit: 'cover' }} />
+                <img src="/images/axiomaweb_icon.png" alt="Axioma Web - Agencia de Desarrollo Web Corporativo" loading="lazy" style={{ width: '100%', height: '100%', borderRadius: '6px', objectFit: 'cover' }} />
               </div>
               <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)' }}>Axioma Web</span>
             </div>

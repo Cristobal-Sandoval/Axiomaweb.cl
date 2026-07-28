@@ -1,84 +1,120 @@
-# 🌐 Axioma Web — Sitio Web Oficial (axiomaweb.cl)
+# Axioma Web — Portal Web Corporativo (axiomaweb.cl)
 
-Plataforma comercial y cotizador en vivo para **Axioma Web** (`axiomaweb.cl`), agencia de desarrollo web corporativo y soluciones digitales de alta conversión en Chile.
-
-> *Desarrollo web fundamentado en certeza, estrategia y resultados reales.*
+Plataforma comercial y portal de autogestión para **Axioma Web**, agencia de desarrollo web corporativo en Chile.
 
 ---
 
-## 🌟 Características de la Landing Page
+## Características
 
-### 📱 1. Experiencia Mobile-First & Diseño Ejecutivo
-- **Promoción Top Sticky (10% OFF)**: Anuncio promocional de 1 sola línea optimizado para celulares con cupón `INAUGURACION10`.
-- **Modo Claro / Oscuro**: Selector de tema visual con paleta personalizada de 4 colores corporativos (`#201a35`, `#3b5e78`, `#48e5c2`, `#d6fcf7`).
-- **Carrusel de Banners Visuales**: Rotación dinámica de imágenes profesionales de estudio y desarrollo web.
-- **Portafolio en Laptop Mockup**: Exhibición de proyectos reales (*CardPoint TCG*, *Beast Training Gym*, *Studio Vanessa Aravena*) dentro de marcos de laptop con capturas en vivo.
+### Landing Page
+- **Promoción Top Sticky (10% OFF)**: Cupón `INAUGURACION10` aplicado automáticamente en checkout
+- **Modo Claro / Oscuro**: Selector de tema con paleta de 4 colores corporativos
+- **Carrusel de Banners**: 5 slides con rotación automática cada 4.5s e indicadores tipo Instagram
+- **Cotizador Instantáneo**: Planes desde $149.990 CLP con extras seleccionables (dominio .CL, SEO, mantención)
+- **Integración Mercado Pago**: Modal de checkout simulado con validación de cupones y descuento
+- **WhatsApp CTA**: Cotización directa con mensaje preformateado
+- **Portafolio en Mockup Laptop**: Proyectos reales (CardPoint TCG, Beast Training Gym, Studio Vanessa Aravena)
+- **FAQ Corporativo**: Acordeón con preguntas frecuentes
 
-### 💰 2. Cotizador Instantáneo Corporativo
-- **Planes Transparentes Desde**:
-  - 🚀 **Landing Básica**: Desde **$200.000 CLP**
-  - 💻 **Web Pro Pyme**: Desde **$250.000 CLP**
-  - 🛒 **Sitio Ventas / E-Commerce**: Desde **$300.000 CLP**
-- **Opciones Seleccionables**:
-  - Dominio .CL / .COM + SSL 256-bit
-  - Sesiones de Mantención y Cambios
-  - Posicionamiento SEO en Buscadores + Schema.org JSON-LD
-- **Integración Dual de Pago & WhatsApp**:
-  - 💬 **Enviar a WhatsApp**: Genera un mensaje formateado con el desglose exacto de la cotización.
-  - 💳 **Mercado Pago & Webpay**: Modal de checkout integrado con cupón del 10% OFF.
+### Portal de Cliente
+- Dashboard autoadministrable con carga diferida (React.lazy)
+- Gestión de cambios en sitio web
+- Mensajería con la agencia
+- Agenda de reuniones
 
-### 🛡️ 3. SEO, Seguridad & Rendimiento Senior
-- **Headers de Seguridad HTTP**: `nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`, `Permissions-Policy`.
-- **Google Schema.org JSON-LD Graph**: Marcado enriquecido para la organización (`@type: Organization`), sitio web y servicios profesionales.
-- **Instagram Oficial**: Enlazado directamente a [@axiomaweb.cl](https://instagram.com/axiomaweb.cl).
+### Panel Admin
+- Dashboard administrativo con carga diferida
+- Visión general de todos los sitios
 
 ---
 
-## 🎨 Paleta de Colores Corporativa
+## Stack Tecnológico
 
-| Color | Hex | Descripción |
-| :--- | :--- | :--- |
-| **Navy Executive** | `#201a35` | Fondo oscuro sofisticado |
-| **Slate Steel** | `#3b5e78` | Contenedores y bordes nítidos |
-| **Mint Cyan** | `#48e5c2` | Acentos tecnológicos de gran impacto |
-| **Ice Mint** | `#d6fcf7` | Tipografía limpia y contraste en modo claro |
-
----
-
-## 🛠️ Tecnologías Utilizadas
-
-- **Core**: React 18 + TypeScript
-- **Bundler**: Vite
-- **Estilos**: Vanilla CSS con CSS Variables y diseño responsivo
-- **Iconografía**: Lucide React
-- **Pagos**: Mercado Pago / Webpay Checkout Simulation
+| Capa | Tecnología |
+|------|-----------|
+| Core | React 19 + TypeScript |
+| Bundler | Vite 8 |
+| Testing | Vitest + Testing Library + jsdom |
+| Estilos | CSS Variables + diseño responsivo (vanilla) |
+| Iconos | Lucide React |
+| SEO | Schema.org JSON-LD (Organization, LocalBusiness, Service, BreadcrumbList, SearchAction) |
 
 ---
 
-## 🚀 Instalación y Ejecución Local
+## Mejoras Implementadas
+
+### Seguridad
+- Centralización de credenciales en `src/config/credentials.ts` con fallback a `import.meta.env`
+- CSP en `<meta http-equiv>` (default-src, script-src, style-src, etc.)
+- Headers HTTP: X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy
+- Sanitización XSS: `sanitizeHTML()` y `sanitizeEmail()` en `src/utils/sanitize.ts`
+- `.env.example` con variables documentadas
+
+### SEO
+- Schema.org JSON-LD extendido (Organization + LocalBusiness + BreadcrumbList + SearchAction + Offer)
+- Hreflang es-CL / es
+- Open Graph avanzado (og:image:secure_url, og:image:alt, og:locale:alternate)
+- Twitter Cards completas
+- Meta tags: description, keywords, author, robots, theme-color, apple-mobile-web-app
+- Sitemap XML + robots.txt en `public/`
+- Preload de imágenes críticas con `fetchpriority`
+
+### Performance
+- Code splitting con `React.lazy()` para ClientDashboard y AdminDashboard
+- `manualChunks` en Vite (vendor, icons)
+- CSS muerto eliminado de `src/index.css`
+- Preconnect a Google Fonts
+- Soporte para `loading="lazy"` en imágenes del Footer
+
+### UI/UX
+- Skip-to-content link para accesibilidad
+- Spinner animado y transición fadeIn entre vistas
+- Hook `useFocusTrap()` con Tab/Shift+Tab/Escape + restauración de foco
+- `role="dialog"` + `aria-modal` en modales de login y pago
+- `aria-label` en imágenes y botones
+- Loading states simulados en login y pago
+- Estados `:focus-visible`, `:user-invalid`/`:valid`
+- Skeleton shimmer y transiciones hover/active
+- Scrollbar personalizado
+
+### Testing (Vitest)
+- 10 archivos de test, 62 pruebas unitarias
+- Cobertura: componentes (Navbar, Footer, BannerCarousel, LoginModal, MercadoPagoModal), hooks (useDocumentTitle, useFocusTrap), utilidades (sanitize), configuración (credentials), contexto (AppContext)
+
+---
+
+## Instalación y Ejecución
 
 ```bash
-# 1. Clonar el repositorio
-git clone https://github.com/Cristobal-Sandoval/Axiomaweb.cl.git
+# 1. Clonar
+git clone <repo-url>
+cd agencia-web-portal
 
-# 2. Entrar al directorio
-cd Axiomaweb.cl
-
-# 3. Instalar dependencias
+# 2. Instalar dependencias
 npm install
 
-# 4. Iniciar el servidor de desarrollo
+# 3. Servidor de desarrollo
 npm run dev
 
-# 5. Compilar para producción
+# 4. Compilar para producción
 npm run build
+
+# 5. Tests
+npm test
 ```
 
 ---
 
-## 👤 Contacto Corporativo
+## Variables de Entorno
 
-- **Sitio Web**: [axiomaweb.cl](https://axiomaweb.cl)
-- **Instagram Oficial**: [@axiomaweb.cl](https://instagram.com/axiomaweb.cl)
-- **Email Corporativo**: `contacto@axiomaweb.cl` | `ventas@axiomaweb.cl`
-- **Ubicación**: Concepción, Chile
+Ver `.env.example` para las variables disponibles. Opcional — el sistema funciona con defaults.
+
+---
+
+## Contacto
+
+- Web: https://axiomaweb.cl
+- Email: contacto@axiomaweb.cl
+- Instagram: @axiomaweb.cl
+- WhatsApp: +569 5662 8609
+- Ubicación: Concepción, Chile
