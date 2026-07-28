@@ -31,7 +31,7 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
 );
 
 export const LandingPage: React.FC = () => {
-  const { projectsShowcase, setIsLoginModalOpen } = useApp();
+  const { projectsShowcase } = useApp();
 
   // Estado para el Cotizador Instantáneo Interactivo
   const [quoteProjectType, setQuoteProjectType] = useState<'express' | 'pro' | 'ecommerce'>('pro');
@@ -45,7 +45,7 @@ export const LandingPage: React.FC = () => {
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  // PRECIOS BASE (LO BÁSICO DE CADA PLAN):
+  // PRECIOS BASE:
   const calculateTotalEstimate = () => {
     let base = quoteProjectType === 'express' ? 200000 : quoteProjectType === 'pro' ? 250000 : 300000;
     if (includeDomain) base += 15000;
@@ -74,23 +74,23 @@ export const LandingPage: React.FC = () => {
     const selectedExtras = getSelectedExtrasList();
     const extrasFormatted = selectedExtras.length > 0 ? selectedExtras.map(e => `• ${e}`).join('%0A') : '• Ningún adicional';
 
-    const message = `Hola AxiomaWeb Studio, estuve cotizando en axiomaweb.cl:%0A%0A📌 *Tipo de Proyecto:* ${typeLabel}%0A%0A📋 *Opciones Seleccionadas:*%0A${extrasFormatted}%0A%0A💰 *Presupuesto Estimado Total:* $${total.toLocaleString('es-CL')} CLP%0A%0A¿Podemos coordinar los detalles para comenzar?`;
+    const message = `Hola Axioma Web, estuve cotizando en axiomaweb.cl:%0A%0A📌 *Tipo de Proyecto:* ${typeLabel}%0A%0A📋 *Opciones Seleccionadas:*%0A${extrasFormatted}%0A%0A💰 *Presupuesto Estimado Total:* $${total.toLocaleString('es-CL')} CLP%0A%0A¿Podemos coordinar los detalles para comenzar?`;
 
     window.open(`https://wa.me/56956628609?text=${message}`, '_blank');
   };
 
   const handleWhatsappDirect = () => {
-    window.open('https://wa.me/56956628609?text=Hola%20AxiomaWeb%20Studio,%20quiero%20cotizar%20mi%20página%20web', '_blank');
+    window.open('https://wa.me/56956628609?text=Hola%20Axioma%20Web,%20quiero%20cotizar%20mi%20página%20web', '_blank');
   };
 
   const faqs = [
     {
-      q: '¿Cómo funciona el Panel de Control Moldeable de AxiomaWeb?',
-      a: 'Te entrego un acceso exclusivo al portal de clientes donde puedes cambiar títulos, fotos, banners de ofertas, WhatsApp de contacto y colores con un par de clics. Los cambios se reflejan de inmediato en tu web sin tener que pagar a un programador cada vez.'
+      q: '¿Cómo funciona el Panel de Control Moldeable de Axioma Web?',
+      a: 'Te entrego un acceso exclusivo al portal de clientes donde puedes cambiar títulos, fotos, banners de ofertas, WhatsApp de contacto y colores con un par de clics. Los cambios se reflejan de inmediato en tu web sin depender de programadores.'
     },
     {
-      q: '¿Mi página web aparecerá en Google?',
-      a: 'Sí, en AxiomaWeb Studio todas las páginas incorporan etiquetas meta avanzadas, datos estructurados Schema.org y optimización de velocidad mobile-first para lograr un excelente posicionamiento SEO.'
+      q: '¿Mi página web aparecerá en las búsquedas en Google?',
+      a: 'Sí, en Axioma Web todas las páginas incorporan etiquetas meta avanzadas, datos estructurados Schema.org y optimización de velocidad mobile-first para lograr un excelente posicionamiento SEO.'
     },
     {
       q: '¿Cuánto tiempo tarda en estar lista mi web?',
@@ -98,7 +98,7 @@ export const LandingPage: React.FC = () => {
     },
     {
       q: '¿Tendré soporte directo con el desarrollador?',
-      a: 'Por supuesto. Cuentas con atención directa por WhatsApp (+569 5662 8609) con Cristóbal Sandoval (Founder de AxiomaWeb), correo corporativo (contacto@axiomaweb.cl) y la posibilidad de agendar reuniones de avance por Google Meet.'
+      a: 'Por supuesto. Cuentas con atención directa por WhatsApp (+569 5662 8609) con Cristóbal Sandoval (Founder de Axioma Web), correo corporativo (contacto@axiomaweb.cl) y panel de control autoadministrable.'
     }
   ];
 
@@ -113,12 +113,12 @@ export const LandingPage: React.FC = () => {
         selectedExtras={getSelectedExtrasList()}
       />
 
-      {/* 1. HERO SECTION AXIOMAWEB */}
+      {/* 1. HERO SECTION AXIOMA WEB */}
       <section className="hero-section">
         <div className="container">
           <div className="badge-glow" style={{ marginBottom: '16px' }}>
             <Zap size={15} style={{ color: '#48e5c2' }} />
-            <span>AxiomaWeb Studio • Certeza, Estrategia & Desarrollo Web de Alta Conversión</span>
+            <span>Axioma Web • Certeza, Estrategia & Desarrollo Web de Alta Conversión</span>
           </div>
 
           <h1 className="hero-title">
@@ -132,7 +132,7 @@ export const LandingPage: React.FC = () => {
           <div className="hero-ctas" style={{ maxWidth: '520px', width: '100%', margin: '0 auto' }}>
             <button onClick={handleWhatsappDirect} className="btn-primary btn-whatsapp" style={{ padding: '16px 32px', fontSize: '1.05rem', whiteSpace: 'nowrap' }}>
               <MessageCircle size={22} />
-              <span>Cotizar con AxiomaWeb (+569 5662 8609)</span>
+              <span>Cotizar con Axioma Web (+569 5662 8609)</span>
             </button>
           </div>
 
@@ -164,13 +164,13 @@ export const LandingPage: React.FC = () => {
         <BannerCarousel />
       </section>
 
-      {/* 3. COTIZADOR INSTANTÁNEO AXIOMAWEB */}
+      {/* 3. COTIZADOR INSTANTÁNEO AXIOMA WEB */}
       <section className="container" style={{ margin: '48px auto' }}>
         <div className="glass-card cotizador-box" style={{ padding: '32px' }}>
           <div style={{ textAlign: 'center', marginBottom: '24px' }}>
             <div className="badge-glow badge-emerald" style={{ marginBottom: '8px' }}>
               <Calculator size={15} />
-              <span>Cotizador Instantáneo AxiomaWeb</span>
+              <span>Cotizador Instantáneo Axioma Web</span>
             </div>
             <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Calcula el Valor de tu Web en Segundos</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
@@ -299,14 +299,14 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. SECCIÓN PORTAFOLIO AXIOMAWEB */}
+      {/* 4. SECCIÓN PORTAFOLIO AXIOMA WEB */}
       <section className="container" style={{ padding: '24px 0 48px' }}>
         <div className="section-header">
           <div className="badge-glow" style={{ marginBottom: '10px' }}>
             <Layers size={15} />
             <span>Casos de Éxito & Portafolio</span>
           </div>
-          <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Casos de Éxito Desarrollados por AxiomaWeb</h2>
+          <h2 className="section-title" style={{ fontSize: '1.8rem' }}>Casos de Éxito Desarrollados por Axioma Web</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
             Explora las plataformas web reales que hemos implementado para nuestros clientes:
           </p>
@@ -408,7 +408,7 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. INSTAGRAM & CONTACTO DIRECTO AXIOMAWEB */}
+      {/* 6. INSTAGRAM & CONTACTO DIRECTO AXIOMA WEB */}
       <section className="container" style={{ paddingBottom: '48px' }}>
         <div className="glass-card cta-banner-box" style={{ padding: '32px', maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
@@ -418,18 +418,13 @@ export const LandingPage: React.FC = () => {
             </div>
             <h3 style={{ fontSize: '1.6rem', fontWeight: 800 }}>¿Hablamos sobre el próximo sitio web para tu empresa?</h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Escríbenos por WhatsApp al <strong>+569 5662 8609</strong> (Cristóbal Sandoval — AxiomaWeb Studio) para revisar tu proyecto sin compromiso.
+              Escríbenos por WhatsApp al <strong>+569 5662 8609</strong> (Cristóbal Sandoval — Axioma Web) para revisar tu proyecto sin compromiso.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '380px', margin: '0 auto', width: '100%' }}>
-              <button onClick={handleWhatsappDirect} className="btn-primary btn-whatsapp" style={{ padding: '14px 24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '320px', margin: '0 auto', width: '100%' }}>
+              <button onClick={handleWhatsappDirect} className="btn-primary btn-whatsapp" style={{ padding: '14px 28px', fontSize: '1rem' }}>
                 <MessageCircle size={18} />
                 <span>Hablar por WhatsApp</span>
-              </button>
-
-              <button onClick={() => setIsLoginModalOpen(true)} className="btn-secondary" style={{ padding: '12px 24px' }}>
-                <Calendar size={16} />
-                <span>Agendar Reunión Demo</span>
               </button>
             </div>
           </div>

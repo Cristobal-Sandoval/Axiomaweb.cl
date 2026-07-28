@@ -135,10 +135,10 @@ export const ClientDashboard: React.FC = () => {
         <div>
           <div className="badge-glow badge-emerald" style={{ marginBottom: '8px' }}>
             <CheckCircle size={14} />
-            <span>Cliente Verificado • AxiomaWeb Studio</span>
+            <span>Cliente Verificado • Axioma Web</span>
           </div>
           <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>
-            Portal del Cliente — AxiomaWeb: <span className="text-gradient">{currentSite.name}</span>
+            Portal del Cliente — Axioma Web: <span className="text-gradient">{currentSite.name}</span>
           </h1>
           <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>
             Cliente: <strong>{currentSite.clientName}</strong> ({currentSite.clientEmail}) | Último cambio: {currentSite.lastUpdated}

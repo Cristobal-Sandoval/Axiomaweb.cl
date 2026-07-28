@@ -7,12 +7,12 @@ export const Navbar: React.FC = () => {
   const [showPromoBanner, setShowPromoBanner] = useState(true);
 
   const handleWhatsappClick = () => {
-    window.open('https://wa.me/56956628609?text=Hola%20AxiomaWeb%20Studio,%20quiero%20cotizar%20mi%20sitio%20web%20con%20el%2010%25%20de%20descuento%20por%20inauguración', '_blank');
+    window.open('https://wa.me/56956628609?text=Hola%20Axioma%20Web,%20quiero%20cotizar%20mi%20sitio%20web%20con%20el%2010%25%20de%20descuento%20por%20inauguración', '_blank');
   };
 
   return (
     <>
-      {/* Banner Flotante de Promoción por Inauguración (AxiomaWeb Studio) */}
+      {/* Banner Flotante de Promoción por Inauguración (Axioma Web) */}
       {showPromoBanner && (
         <div className="promo-top-banner">
           <div className="container promo-banner-inner">
@@ -25,7 +25,7 @@ export const Navbar: React.FC = () => {
                   <span>10% OFF INAUGURACIÓN</span>
                 </span>
                 <span className="promo-banner-text">
-                  🎉 ¡10% de descuento por inauguración en todos los proyectos web de AxiomaWeb Studio!
+                  🎉 ¡10% de descuento por inauguración en todos los proyectos de Axioma Web!
                 </span>
               </div>
 
@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
                   10% OFF
                 </span>
                 <span style={{ fontWeight: 700, fontSize: '0.74rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                  🎉 Inauguración AxiomaWeb Studio
+                  🎉 Inauguración Axioma Web
                 </span>
               </div>
 
@@ -79,12 +79,12 @@ export const Navbar: React.FC = () => {
         <div className="container navbar-inner" style={{ margin: '0 auto', maxWidth: '1200px' }}>
           <a href="#" onClick={(e) => { e.preventDefault(); setViewMode('landing'); }} className="brand-logo">
             <div className="logo-icon" style={{ padding: '2px', background: 'transparent' }}>
-              <img src="/images/axiomaweb_icon.png" alt="AxiomaWeb Icon" style={{ width: '100%', height: '100%', borderRadius: '8px', objectFit: 'cover' }} />
+              <img src="/images/axiomaweb_icon.png" alt="Axioma Web Icon" style={{ width: '100%', height: '100%', borderRadius: '8px', objectFit: 'cover' }} />
             </div>
             <div>
-              <span className="text-gradient" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>AxiomaWeb</span>
+              <span className="text-gradient" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>Axioma Web</span>
               <span style={{ display: 'block', fontSize: '0.65rem', color: themeMode === 'light' ? '#2d4a60' : '#a2c4d4', fontWeight: 700, letterSpacing: '0.06em' }}>
-                STUDIO & DIGITAL PARTNERS
+                DESARROLLO WEB & SOFTWARE
               </span>
             </div>
           </a>

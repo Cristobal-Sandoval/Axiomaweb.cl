@@ -25,9 +25,9 @@ export const Footer: React.FC = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', justifyContent: 'center' }}>
               <div className="logo-icon" style={{ width: '32px', height: '32px', padding: '2px', background: 'transparent' }}>
-                <img src="/images/axiomaweb_icon.png" alt="AxiomaWeb Icon" style={{ width: '100%', height: '100%', borderRadius: '6px', objectFit: 'cover' }} />
+                <img src="/images/axiomaweb_icon.png" alt="Axioma Web Icon" style={{ width: '100%', height: '100%', borderRadius: '6px', objectFit: 'cover' }} />
               </div>
-              <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)' }}>AxiomaWeb Studio</span>
+              <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)' }}>Axioma Web</span>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, textAlign: 'center' }}>
               Desarrollo web fundamentado en certeza, estrategia y resultados. Plataformas profesionales, ultrarrápidas y 100% autoadministrables.
@@ -70,7 +70,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '24px', textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-dim)' }}>
-          © {new Date().getFullYear()} AxiomaWeb Studio & Digital Partners (axiomaweb.cl). Todos los derechos reservados.
+          © {new Date().getFullYear()} Axioma Web (axiomaweb.cl). Todos los derechos reservados.
         </div>
       </div>
     </footer>

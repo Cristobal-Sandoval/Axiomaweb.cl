@@ -73,7 +73,7 @@ export const AdminDashboard: React.FC = () => {
           <div>
             <div className="badge-glow" style={{ marginBottom: '8px', background: 'rgba(236,72,153,0.15)', borderColor: '#ec4899', color: '#f472b6' }}>
               <ShieldCheck size={16} />
-              <span>Panel Maestro AxiomaWeb Studio</span>
+              <span>Panel Maestro Axioma Web</span>
             </div>
             <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Gestor Full Modulable de Sitios Web (axiomaweb.cl)</h1>
             <p style={{ color: '#94a3b8', fontSize: '0.88rem' }}>
