@@ -1,61 +1,95 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/images/axiomaweb_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
+    <!-- Security Headers HTTP Meta Policy -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
     <!-- SEO Meta Tags Primarios -->
-    <title>Axioma Web — Desarrollo Web con Certeza & Estrategia (axiomaweb.cl)</title>
-    <meta name="title" content="Axioma Web — Desarrollo Web con Certeza & Estrategia (axiomaweb.cl)" />
-    <meta name="description" content="Agencia de desarrollo web profesional en Chile. Cotización instantánea transparente, sitios mobile-first ultrarrápidos, e-commerce y panel autoadministrable sin código." />
-    <meta name="keywords" content="AxiomaWeb, Axioma Web, axiomaweb.cl, desarrollo web chile, paginas web concepcion, crear pagina web pyme, e-commerce chile, tienda online tcg, cotizador web instantaneo, creador paginas web" />
-    <meta name="author" content="Axioma Web" />
-    <meta name="robots" content="index, follow" />
+    <title>Axioma Web — Desarrollo Web & Software Corporativo (axiomaweb.cl)</title>
+    <meta name="title" content="Axioma Web — Desarrollo Web & Software Corporativo (axiomaweb.cl)" />
+    <meta name="description" content="Agencia de desarrollo web corporativo en Chile. Cotizador instantáneo sin costos ocultos, plataformas mobile-first ultrarrápidas, e-commerce y portal de control autoadministrable." />
+    <meta name="keywords" content="Axioma Web, axiomaweb.cl, desarrollo web chile, paginas web concepcion, software pyme, e-commerce chile, cotizador web instantaneo, agencia digital chile" />
+    <meta name="author" content="Axioma Web & Software Studio" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://axiomaweb.cl/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://axiomaweb.cl/" />
-    <meta property="og:title" content="Axioma Web — Desarrollo Web con Certeza & Estrategia" />
-    <meta property="og:description" content="Tu agencia web con cotización instantánea en vivo, pasarela de pago y portal de control autoadministrable." />
-    <meta property="og:image" content="/images/axiomaweb_logo_horizontal.png" />
+    <meta property="og:site_name" content="Axioma Web" />
+    <meta property="og:title" content="Axioma Web — Desarrollo Web & Software Corporativo" />
+    <meta property="og:description" content="Tu agencia de ingeniería web con cotizador en vivo, pasarela de pagos integrada y portal autoadministrable." />
+    <meta property="og:image" content="https://axiomaweb.cl/images/axiomaweb_logo_horizontal.png" />
+    <meta property="og:locale" content="es_CL" />
 
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://axiomaweb.cl/" />
-    <meta property="twitter:title" content="Axioma Web — Desarrollo Web con Certeza & Estrategia" />
-    <meta property="twitter:description" content="Cotiza tu proyecto web en segundos sin costos ocultos. Desarrollo mobile-first de alto rendimiento." />
-    <meta property="twitter:image" content="/images/axiomaweb_logo_horizontal.png" />
+    <meta property="twitter:title" content="Axioma Web — Desarrollo Web & Software Corporativo" />
+    <meta property="twitter:description" content="Cotiza tu proyecto web en segundos con total certeza y transparencia. Alto rendimiento mobile-first." />
+    <meta property="twitter:image" content="https://axiomaweb.cl/images/axiomaweb_logo_horizontal.png" />
 
-    <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Performance Optimization: Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/images/axiomaweb_icon.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Schema.org JSON-LD para Google SEO -->
+    <!-- Schema.org JSON-LD Senior SEO Architecture -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Axioma Web",
-      "url": "https://axiomaweb.cl",
-      "logo": "https://axiomaweb.cl/images/axiomaweb_icon.png",
-      "image": "https://axiomaweb.cl/images/axiomaweb_logo_horizontal.png",
-      "description": "Desarrollo web fundamentado en certeza, estrategia y resultados de alta conversión.",
-      "telephone": "+56956628609",
-      "email": "contacto@axiomaweb.cl",
-      "priceRange": "$200.000 CLP - $300.000 CLP",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Concepción",
-        "addressCountry": "CL"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "09:00",
-        "closes": "20:00"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://axiomaweb.cl/#organization",
+          "name": "Axioma Web",
+          "url": "https://axiomaweb.cl",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://axiomaweb.cl/images/axiomaweb_icon.png"
+          },
+          "email": "contacto@axiomaweb.cl",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "ventas@axiomaweb.cl",
+            "availableLanguage": ["Spanish"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://axiomaweb.cl/#website",
+          "url": "https://axiomaweb.cl",
+          "name": "Axioma Web",
+          "publisher": {
+            "@id": "https://axiomaweb.cl/#organization"
+          },
+          "inLanguage": "es-CL"
+        },
+        {
+          "@type": "Service",
+          "name": "Desarrollo Web & E-Commerce Corporativo",
+          "provider": {
+            "@id": "https://axiomaweb.cl/#organization"
+          },
+          "serviceType": "Desarrollo de Software y Páginas Web",
+          "areaServed": "CL",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "CLP",
+            "lowPrice": "200000",
+            "highPrice": "300000"
+          }
+        }
+      ]
     }
     </script>
   </head>

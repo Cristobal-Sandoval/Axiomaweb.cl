@@ -260,9 +260,9 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
             <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px', borderRadius: '12px', fontSize: '0.85rem', color: '#a5b4fc', marginBottom: '24px', textAlign: 'left' }}>
               <p>📌 <strong>Cliente:</strong> {customerName} ({customerEmail})</p>
               <p>📌 <strong>Proyecto:</strong> {projectTypeLabel}</p>
-              <p>📌 <strong>Código de Descuento:</strong> INAUGURACION30 (-30%)</p>
+              <p>📌 <strong>Código de Descuento:</strong> INAUGURACION10 (-10% OFF)</p>
               <p>📌 <strong>Monto Pagado:</strong> ${finalAmountCLP.toLocaleString('es-CL')} CLP</p>
-              <p>📌 <strong>Estado:</strong> Aprobado por Mercado Pago</p>
+              <p>📌 <strong>Estado:</strong> Transacción Aprobada (Mercado Pago Chile)</p>
             </div>
 
             <button onClick={onClose} className="btn-primary" style={{ padding: '12px 24px' }}>
