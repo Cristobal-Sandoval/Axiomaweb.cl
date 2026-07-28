@@ -420,10 +420,10 @@ export const LandingPage: React.FC = () => {
       <section className="container" style={{ paddingBottom: '48px' }} aria-label="Contacto Comercial">
         <div className="glass-card cta-banner-box" style={{ padding: '32px', maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--c-mint-cyan)', fontWeight: 700 }}>
+            <a href="https://instagram.com/axiomaweb.cl" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--c-mint-cyan)', fontWeight: 700, textDecoration: 'none' }}>
               <InstagramIcon size={20} />
-              <span>@axiomaweb.cl (Canal Corporativo)</span>
-            </div>
+              <span>@axiomaweb.cl en Instagram</span>
+            </a>
             <h3 style={{ fontSize: '1.6rem', fontWeight: 800 }}>¿Listo para impulsar el sitio web de tu empresa?</h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
               Contacta a nuestra Mesa de Atención Comercial por WhatsApp para asesorarte en el desarrollo de tu solución digital.

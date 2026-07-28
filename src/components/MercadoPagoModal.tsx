@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CreditCard, CheckCircle2, ShieldCheck, X, Tag, ArrowRight, Lock } from 'lucide-react';
+import { APP_CONFIG } from '../config/credentials';
 
 interface MercadoPagoModalProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
   selectedExtras
 }) => {
   const [couponInput, setCouponInput] = useState('INAUGURACION10');
-  const [discountPercent, setDiscountPercent] = useState(10);
+  const [discountPercent, setDiscountPercent] = useState(APP_CONFIG.coupons.defaultDiscount);
   const [couponApplied, setCouponApplied] = useState(true);
   const [couponError, setCouponError] = useState('');
 
@@ -26,14 +27,15 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
   const [customerEmail, setCustomerEmail] = useState('');
   const [selectedMethod, setSelectedMethod] = useState<'card' | 'webpay' | 'mp_wallet'>('card');
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentError, setPaymentError] = useState('');
 
   if (!isOpen) return null;
 
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
     const clean = couponInput.trim().toUpperCase();
-    if (clean === 'INAUGURACION10' || clean === 'INAUGURACION' || clean === 'CRISTOBAL10' || clean === 'DESCUENTO10') {
-      setDiscountPercent(10);
+    if (APP_CONFIG.coupons.validCodes.includes(clean)) {
+      setDiscountPercent(APP_CONFIG.coupons.defaultDiscount);
       setCouponApplied(true);
       setCouponError('');
     } else {
@@ -48,12 +50,13 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
 
   const handleProcessPayment = (e: React.FormEvent) => {
     e.preventDefault();
+    setPaymentError('');
+
     if (!customerName || !customerEmail) {
-      alert('Por favor completa tu nombre y correo electrónico para la boleta/factura.');
+      setPaymentError('Por favor completa tu nombre y correo electrónico para la boleta/factura.');
       return;
     }
 
-    // SIMULACIÓN DE CHECKOUT PRO DE MERCADO PAGO / WEBPAY
     setPaymentSuccess(true);
   };
 
@@ -221,6 +224,12 @@ export const MercadoPagoModal: React.FC<MercadoPagoModalProps> = ({
                   </button>
                 </div>
               </div>
+
+              {paymentError && (
+                <div style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid #ef4444', color: '#fca5a5', padding: '10px', borderRadius: '8px', fontSize: '0.82rem', textAlign: 'center' }}>
+                  {paymentError}
+                </div>
+              )}
 
               <button 
                 type="submit" 

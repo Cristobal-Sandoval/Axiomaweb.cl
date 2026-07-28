@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
               <a href="https://linkedin.com/in/cristobalsandovaldev" target="_blank" rel="noopener noreferrer" className="btn-secondary btn-sm" title="LinkedIn Corporativo" aria-label="Perfil LinkedIn" style={{ width: '40px', height: '40px', padding: 0, borderRadius: '50%' }}>
                 <LinkedinIcon size={16} />
               </a>
-              <a href="#" className="btn-secondary btn-sm" title="Instagram @axiomaweb.cl" aria-label="Instagram Corporativo" style={{ width: '40px', height: '40px', padding: 0, borderRadius: '50%' }}>
+              <a href="https://instagram.com/axiomaweb.cl" target="_blank" rel="noopener noreferrer" className="btn-secondary btn-sm" title="Instagram @axiomaweb.cl" aria-label="Instagram Oficial Axioma Web" style={{ width: '40px', height: '40px', padding: 0, borderRadius: '50%' }}>
                 <InstagramIcon size={16} />
               </a>
             </div>

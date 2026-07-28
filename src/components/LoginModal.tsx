@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import type { SiteId } from '../types';
 import { Lock, UserCheck, ShieldCheck, X, Key, Mail, ArrowRight } from 'lucide-react';
+import { APP_CONFIG } from '../config/credentials';
+import { sanitizeEmail } from '../utils/sanitize';
 
 export const LoginModal: React.FC = () => {
   const { isLoginModalOpen, setIsLoginModalOpen, loginWithCredentials, sites } = useApp();
@@ -9,9 +11,9 @@ export const LoginModal: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'client' | 'admin'>('client');
   const [selectedSiteId, setSelectedSiteId] = useState<SiteId>('cardpoint');
   const [emailInput, setEmailInput] = useState('contacto@cardpoint.cl');
-  const [passwordInput, setPasswordInput] = useState('cliente123');
-  const [adminEmail, setAdminEmail] = useState('cristobal.sandoval.balboa@gmail.com');
-  const [adminPassword, setAdminPassword] = useState('admin123');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [adminEmail, setAdminEmail] = useState(APP_CONFIG.admin.emails[0]);
+  const [adminPassword, setAdminPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
   if (!isLoginModalOpen) return null;
@@ -19,26 +21,28 @@ export const LoginModal: React.FC = () => {
   const handleSelectSiteQuick = (siteId: SiteId) => {
     setSelectedSiteId(siteId);
     setEmailInput(sites[siteId].clientEmail);
-    setPasswordInput('123456');
+    setPasswordInput(APP_CONFIG.clients.defaultPassword);
     setLoginError('');
   };
 
   const handleClientLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!emailInput || !passwordInput) {
+    const cleanEmail = sanitizeEmail(emailInput);
+    if (!cleanEmail || !passwordInput) {
       setLoginError('Por favor ingresa tu correo y contraseña.');
       return;
     }
-    loginWithCredentials(emailInput, passwordInput, selectedSiteId);
+    loginWithCredentials(cleanEmail, passwordInput, selectedSiteId);
   };
 
   const handleAdminLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!adminPassword) {
-      setLoginError('Por favor ingresa la contraseña de administrador.');
+    const cleanEmail = sanitizeEmail(adminEmail);
+    if (!cleanEmail || !adminPassword) {
+      setLoginError('Por favor ingresa correo y contraseña de administrador.');
       return;
     }
-    loginWithCredentials(adminEmail, adminPassword);
+    loginWithCredentials(cleanEmail, adminPassword);
   };
 
   return (

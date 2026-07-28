@@ -10,6 +10,7 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; base-uri 'self'; form-action 'self'" />
 
     <!-- SEO Meta Tags Primarios -->
     <title>Axioma Web — Desarrollo Web & Software Corporativo (axiomaweb.cl)</title>
@@ -54,15 +55,46 @@
           "url": "https://axiomaweb.cl",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://axiomaweb.cl/images/axiomaweb_icon.png"
+            "url": "https://axiomaweb.cl/images/axiomaweb_icon.png",
+            "width": 512,
+            "height": 512
           },
+          "image": "https://axiomaweb.cl/images/axiomaweb_logo_horizontal.png",
           "email": "contacto@axiomaweb.cl",
+          "telephone": "+56956628609",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Concepción",
+            "addressCountry": "CL"
+          },
+          "sameAs": [
+            "https://wa.me/56956628609",
+            "https://linkedin.com/in/cristobalsandovaldev"
+          ],
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
+            "telephone": "+56956628609",
             "email": "ventas@axiomaweb.cl",
-            "availableLanguage": ["Spanish"]
+            "availableLanguage": ["Spanish", "es-CL"]
           }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://axiomaweb.cl/#localbusiness",
+          "name": "Axioma Web & Software Studio",
+          "parentOrganization": { "@id": "https://axiomaweb.cl/#organization" },
+          "url": "https://axiomaweb.cl",
+          "telephone": "+56956628609",
+          "priceRange": "$200.000 - $300.000 CLP",
+          "image": "https://axiomaweb.cl/images/axiomaweb_logo_horizontal.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Concepción",
+            "addressRegion": "Bío Bío",
+            "addressCountry": "CL"
+          },
+          "areaServed": "CL"
         },
         {
           "@type": "WebSite",
@@ -72,7 +104,12 @@
           "publisher": {
             "@id": "https://axiomaweb.cl/#organization"
           },
-          "inLanguage": "es-CL"
+          "inLanguage": "es-CL",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://axiomaweb.cl/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
         },
         {
           "@type": "Service",
@@ -82,12 +119,42 @@
           },
           "serviceType": "Desarrollo de Software y Páginas Web",
           "areaServed": "CL",
-          "offers": {
-            "@type": "AggregateOffer",
-            "priceCurrency": "CLP",
-            "lowPrice": "200000",
-            "highPrice": "300000"
-          }
+          "description": "Plataformas mobile-first ultrarrápidas, e-commerce y portal de control autoadministrable.",
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Landing Básica",
+              "price": "200000",
+              "priceCurrency": "CLP",
+              "description": "Página web directa ideal para presentar tu negocio rápidamente."
+            },
+            {
+              "@type": "Offer",
+              "name": "Web Pro Pyme",
+              "price": "250000",
+              "priceCurrency": "CLP",
+              "description": "Sitio web completo multi-sección autoadministrable."
+            },
+            {
+              "@type": "Offer",
+              "name": "Sitio Ventas / E-Commerce",
+              "price": "300000",
+              "priceCurrency": "CLP",
+              "description": "Tienda online con catálogo dinámico y cobro con tarjeta."
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://axiomaweb.cl/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://axiomaweb.cl/"
+            }
+          ]
         }
       ]
     }
