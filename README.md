@@ -1,55 +1,47 @@
-# 🚀 AxiomaWeb Studio & Digital Partners (axiomaweb.cl)
+# 🌐 Axioma Web — Sitio Web Oficial (axiomaweb.cl)
 
-Plataforma web profesional y sistema integral de ventas para la agencia de desarrollo web **AxiomaWeb Studio** (`axiomaweb.cl`). Diseñado **Mobile-First**, optimizado para SEO Google Schema.org, con **Cotizador Instantáneo en Vivo**, **Checkout Mercado Pago / Webpay**, **Banners 10% OFF**, **Portafolio en Laptop Mockup** y **Panel de Control Autoadministrable** para clientes y administrador maestro.
+Plataforma comercial y cotizador en vivo para **Axioma Web** (`axiomaweb.cl`), agencia de desarrollo web corporativo y soluciones digitales de alta conversión en Chile.
 
-> *Desarrollo web fundamentado en certeza, estrategia y resultados de alta conversión.*
-
----
-
-## 🌟 Características Principales
-
-### 📱 1. Landing Page & Experiencia Mobile-First
-- **Promoción Top Sticky (10% OFF)**: Barra superior ultra compacta de 1 sola línea en celulares con cupón promocional `INAUGURACION10`.
-- **Hero Interactivo**: Acceso directo al botón de cotización por WhatsApp (+569 5662 8609) y selector de modo **Claro / Oscuro**.
-- **Carrusel de Banners Promocionales**: Rotación de fotografías profesionales de desarrollo y estudio web.
-- **Portafolio en Laptop Mockup**: Exhibición de proyectos reales (*CardPoint TCG*, *Beast Training Gym*, *Studio Vanessa Aravena*) dentro de maquetas digitales de laptops con capturas en vivo.
-
-### 💰 2. Cotizador Instantáneo AxiomaWeb
-- **Planes Claros Desde**:
-  - **Landing Básica**: Desde **$200.000 CLP**
-  - **Web Pro Pyme**: Desde **$250.000 CLP**
-  - **Sitio Ventas / E-Commerce**: Desde **$300.000 CLP**
-- **Opciones Opcionales**:
-  - Dominio .CL / .COM & Infraestructura SSL
-  - Agendamiento a 3 Reuniones para mantención y cambios
-  - Posicionamiento SEO en Buscadores + Marcado JSON-LD
-- **Venta Dual Inmediata**:
-  - 💬 **Enviar a WhatsApp**: Genera un mensaje formateado con el desglose exacto de lo seleccionado.
-  - 💳 **Pagar con Tarjeta (Mercado Pago)**: Modal de pago con tarjeta de crédito, débito, Webpay y validación de cupones de descuento en tiempo real.
-
-### 🔐 3. Panel de Control Autoadministrable (Portal del Cliente & Admin)
-- **Portal del Cliente — AxiomaWeb**:
-  - Modificación de banners, ofertas, WhatsApp de contacto y horarios en tiempo real.
-  - Envío de solicitudes de cambios y seguimiento de estado (Pendiente, En Proceso, Completado).
-  - Mensajería directa con el equipo técnico de AxiomaWeb Studio.
-  - Agendamiento de reuniones por Google Meet.
-- **Panel Admin Maestro**:
-  - Control global de todos los sitios de clientes.
-  - Modificación centralizada de contenidos y estado de sitios.
-  - Respuesta a mensajes y gestión de solicitudes de cambio.
+> *Desarrollo web fundamentado en certeza, estrategia y resultados reales.*
 
 ---
 
-## 🎨 Paleta de Colores Exclusiva
+## 🌟 Características de la Landing Page
 
-El diseño está construido sobre la paleta corporativa de 4 tonos armónicos:
+### 📱 1. Experiencia Mobile-First & Diseño Ejecutivo
+- **Promoción Top Sticky (10% OFF)**: Anuncio promocional de 1 sola línea optimizado para celulares con cupón `INAUGURACION10`.
+- **Modo Claro / Oscuro**: Selector de tema visual con paleta personalizada de 4 colores corporativos (`#201a35`, `#3b5e78`, `#48e5c2`, `#d6fcf7`).
+- **Carrusel de Banners Visuales**: Rotación dinámica de imágenes profesionales de estudio y desarrollo web.
+- **Portafolio en Laptop Mockup**: Exhibición de proyectos reales (*CardPoint TCG*, *Beast Training Gym*, *Studio Vanessa Aravena*) dentro de marcos de laptop con capturas en vivo.
 
-| Color | Hex | Uso |
+### 💰 2. Cotizador Instantáneo Corporativo
+- **Planes Transparentes Desde**:
+  - 🚀 **Landing Básica**: Desde **$200.000 CLP**
+  - 💻 **Web Pro Pyme**: Desde **$250.000 CLP**
+  - 🛒 **Sitio Ventas / E-Commerce**: Desde **$300.000 CLP**
+- **Opciones Seleccionables**:
+  - Dominio .CL / .COM + SSL 256-bit
+  - Sesiones de Mantención y Cambios
+  - Posicionamiento SEO en Buscadores + Schema.org JSON-LD
+- **Integración Dual de Pago & WhatsApp**:
+  - 💬 **Enviar a WhatsApp**: Genera un mensaje formateado con el desglose exacto de la cotización.
+  - 💳 **Mercado Pago & Webpay**: Modal de checkout integrado con cupón del 10% OFF.
+
+### 🛡️ 3. SEO, Seguridad & Rendimiento Senior
+- **Headers de Seguridad HTTP**: `nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`, `Permissions-Policy`.
+- **Google Schema.org JSON-LD Graph**: Marcado enriquecido para la organización (`@type: Organization`), sitio web y servicios profesionales.
+- **Instagram Oficial**: Enlazado directamente a [@axiomaweb.cl](https://instagram.com/axiomaweb.cl).
+
+---
+
+## 🎨 Paleta de Colores Corporativa
+
+| Color | Hex | Descripción |
 | :--- | :--- | :--- |
-| **Navy Executive** | `#201a35` | Fondo principal y cuerpo de tarjetas |
-| **Slate Steel** | `#3b5e78` | Bordes nítidos y contenedores secundarios |
-| **Mint Cyan** | `#48e5c2` | Acentos principales, botones WhatsApp y badges |
-| **Ice Mint** | `#d6fcf7` | Tipografía principal y fondo en Modo Claro |
+| **Navy Executive** | `#201a35` | Fondo oscuro sofisticado |
+| **Slate Steel** | `#3b5e78` | Contenedores y bordes nítidos |
+| **Mint Cyan** | `#48e5c2` | Acentos tecnológicos de gran impacto |
+| **Ice Mint** | `#d6fcf7` | Tipografía limpia y contraste en modo claro |
 
 ---
 
@@ -57,26 +49,25 @@ El diseño está construido sobre la paleta corporativa de 4 tonos armónicos:
 
 - **Core**: React 18 + TypeScript
 - **Bundler**: Vite
-- **Estilos**: Vanilla CSS con variables CSS personalizadas y diseño responsivo
+- **Estilos**: Vanilla CSS con CSS Variables y diseño responsivo
 - **Iconografía**: Lucide React
-- **SEO & Metadatos**: Google Schema.org JSON-LD (`ProfessionalService`), OpenGraph, Twitter Cards
 - **Pagos**: Mercado Pago / Webpay Checkout Simulation
 
 ---
 
-## 🚀 Instalación y Uso Local
+## 🚀 Instalación y Ejecución Local
 
 ```bash
 # 1. Clonar el repositorio
-git clone <URL_DE_TU_REPOSITORIO>
+git clone https://github.com/Cristobal-Sandoval/Axiomaweb.cl.git
 
-# 2. Entrar a la carpeta del proyecto
-cd agencia-web-portal
+# 2. Entrar al directorio
+cd Axiomaweb.cl
 
 # 3. Instalar dependencias
 npm install
 
-# 4. Iniciar el servidor de desarrollo local
+# 4. Iniciar el servidor de desarrollo
 npm run dev
 
 # 5. Compilar para producción
@@ -85,10 +76,9 @@ npm run build
 
 ---
 
-## 👤 Contacto Corporativo — AxiomaWeb Studio
+## 👤 Contacto Corporativo
 
-- **Sitio Web Oficial**: [axiomaweb.cl](https://axiomaweb.cl)
-- **Lead Developer & Founder**: Cristóbal Sandoval Balboa
-- **WhatsApp Corporativo**: [+569 5662 8609](https://wa.me/56956628609)
-- **Email Corporativo**: `contacto@axiomaweb.cl`
+- **Sitio Web**: [axiomaweb.cl](https://axiomaweb.cl)
+- **Instagram Oficial**: [@axiomaweb.cl](https://instagram.com/axiomaweb.cl)
+- **Email Corporativo**: `contacto@axiomaweb.cl` | `ventas@axiomaweb.cl`
 - **Ubicación**: Concepción, Chile
