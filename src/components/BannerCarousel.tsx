@@ -94,7 +94,6 @@ export const BannerCarousel: React.FC = () => {
       className="banner-carousel-wrapper" 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ position: 'relative', overflow: 'hidden', height: '360px', boxSizing: 'border-box' }}
     >
       {/* Botón Escondido / Discreto Anterior (<) */}
       <button
@@ -154,17 +153,22 @@ export const BannerCarousel: React.FC = () => {
         <ChevronRight size={20} />
       </button>
 
-      {/* Imagen Fotográfica Profesional Visible (SIN BLUR) */}
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
-        backgroundImage: `url(${currentBanner.image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        opacity: 0.82,
-        transition: 'background-image 0.5s ease-in-out, opacity 0.5s ease',
-        zIndex: 1
-      }} />
+      {/* Capas Fotográficas en Transición Suave (Crossfade de 5 Imágenes HD) */}
+      {BANNERS.map((slide, idx) => (
+        <div
+          key={slide.id}
+          style={{
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundImage: `url(${slide.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: idx === currentIndex ? 0.82 : 0,
+            transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+            zIndex: 1
+          }}
+        />
+      ))}
 
       {/* Capa Transparente de Texto Legible (Scrim Gradient) */}
       <div style={{
@@ -175,8 +179,8 @@ export const BannerCarousel: React.FC = () => {
       }} />
 
       {/* Contenido del Banner */}
-      <div className="banner-carousel-slide" style={{ position: 'relative', zIndex: 3, textShadow: '0 2px 10px rgba(0,0,0,0.8)', height: 'calc(100% - 48px)', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div className="badge-glow" style={{ marginBottom: '14px', background: 'rgba(9, 13, 22, 0.85)', backdropFilter: 'blur(10px)', alignSelf: 'center' }}>
+      <div className="banner-carousel-slide" style={{ position: 'relative', zIndex: 3, textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+        <div className="badge-glow" style={{ marginBottom: '12px', background: 'rgba(9, 13, 22, 0.85)', backdropFilter: 'blur(10px)', alignSelf: 'center' }}>
           {currentBanner.icon}
           <span>{currentBanner.badge}</span>
         </div>
@@ -186,7 +190,7 @@ export const BannerCarousel: React.FC = () => {
           <span className="text-gradient" style={{ display: 'inline-block', marginLeft: '6px' }}>{currentBanner.highlightText}</span>
         </h3>
 
-        <p className="banner-description" style={{ color: '#e2e8f0', textShadow: '0 1px 6px rgba(0,0,0,0.9)', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p className="banner-description" style={{ color: '#e2e8f0', textShadow: '0 1px 6px rgba(0,0,0,0.9)' }}>
           {currentBanner.description}
         </p>
       </div>
