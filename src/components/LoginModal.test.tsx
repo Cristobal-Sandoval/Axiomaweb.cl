@@ -38,7 +38,7 @@ describe('LoginModal', () => {
 
   it('can switch to admin tab', () => {
     renderModalOpen();
-    fireEvent.click(screen.getByText('Panel Admin (Cristóbal)'));
+    fireEvent.click(screen.getByText('Panel Admin (Axioma Web)'));
     expect(screen.getByText('Ingresar como Admin Maestro')).toBeInTheDocument();
   });
 
@@ -61,7 +61,7 @@ describe('LoginModal', () => {
 
   it('has admin email pre-filled in admin tab', () => {
     renderModalOpen();
-    fireEvent.click(screen.getByText('Panel Admin (Cristóbal)'));
+    fireEvent.click(screen.getByText('Panel Admin (Axioma Web)'));
     const adminEmailInput = screen.getByDisplayValue(/cristobal.sandoval/i);
     expect(adminEmailInput).toBeInTheDocument();
   });

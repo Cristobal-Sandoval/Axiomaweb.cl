@@ -8,11 +8,18 @@ describe('Footer', () => {
     expect(screen.getByText('Axioma Web')).toBeInTheDocument();
   });
 
-  it('renders contact email link', () => {
+  it('renders contact email button', () => {
     render(<Footer />);
-    const email = screen.getByText('contacto@axiomaweb.cl');
-    expect(email).toBeInTheDocument();
-    expect(email.closest('a')).toHaveAttribute('href', 'mailto:contacto@axiomaweb.cl');
+    const emailBtn = screen.getByText('Email de contacto');
+    expect(emailBtn).toBeInTheDocument();
+    expect(emailBtn.closest('a')).toHaveAttribute('href', 'mailto:cristobal.sandoval.balboa@gmail.com');
+  });
+
+  it('renders Nosotros link pointing to portfolio', () => {
+    render(<Footer />);
+    const nosotros = screen.getByText('Nosotros');
+    expect(nosotros).toBeInTheDocument();
+    expect(nosotros.closest('a')).toHaveAttribute('href', 'https://cristobalsandoval-portafolio.vercel.app/');
   });
 
   it('renders security badge', () => {

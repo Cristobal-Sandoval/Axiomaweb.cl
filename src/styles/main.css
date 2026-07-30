@@ -39,31 +39,31 @@
   --touch-target: 44px;
 }
 
-/* PALETA EXACTA EN MODO CLARO */
+/* PALETA EXACTA EN MODO CLARO (ALTA LEGIBILIDAD) */
 body.light-mode {
-  --bg-main: #f0fdfa;         /* Fondo Menta Helado Clarísimo */
+  --bg-main: #f8fafc;         /* Fondo Slate Clarísimo */
   --bg-card: #ffffff;         /* Tarjeta Blanca Pura */
-  --bg-card-hover: #e6fffa;
-  --bg-glass: rgba(255, 255, 255, 0.94);
+  --bg-card-hover: #f1f5f9;
+  --bg-glass: rgba(255, 255, 255, 0.96);
 
-  --border-subtle: #b2f5ea;
-  --border-glow: rgba(72, 229, 194, 0.6);
+  --border-subtle: #cbd5e1;
+  --border-glow: rgba(13, 148, 136, 0.5);
   --border-active: #0d9488;
 
-  --accent-primary: #0d9488;  /* Verde Menta Oscuro para Botones en Modo Claro */
+  --accent-primary: #0d9488;  /* Verde Menta Oscuro para Botones */
   --accent-secondary: #0284c7;
 
-  --text-main: #111d28;       /* Texto Azul Pizarra Oscuro Legible */
-  --text-muted: #2d4a60;
-  --text-dim: #507188;
+  --text-main: #0f172a;       /* Slate 900 Ultra Legible */
+  --text-muted: #334155;      /* Slate 700 para párrafos y descripciones */
+  --text-dim: #475569;        /* Slate 600 */
 
-  --shadow-card: 0 10px 30px -5px rgba(32, 26, 53, 0.08);
+  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
   --shadow-glow: 0 0 25px rgba(13, 148, 136, 0.15);
 
-  background-color: #f0fdfa;
+  background-color: #f8fafc;
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(72, 229, 194, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 75%, rgba(59, 94, 120, 0.1) 0%, transparent 55%);
+    radial-gradient(circle at 15% 15%, rgba(13, 148, 136, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(2, 132, 199, 0.08) 0%, transparent 55%);
 }
 
 * {
@@ -527,22 +527,22 @@ body.light-mode .banner-carousel-wrapper {
 }
 
 .insta-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(162, 196, 212, 0.4);
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .insta-dot.active {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: var(--c-mint-cyan);
   box-shadow: 0 0 12px var(--c-mint-cyan);
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 
 body.light-mode .insta-dot.active {
@@ -999,3 +999,101 @@ a, button {
     padding-right: 24px;
   }
 }
+
+/* ==========================================================================
+   OPTIMIZACIONES DE ALTA LEGIBILIDAD PARA MODO CLARO
+   ========================================================================== */
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3:not(.banner-title), 
+body.light-mode h4,
+body.light-mode .section-title,
+body.light-mode .hero-title,
+body.light-mode .laptop-domain-title {
+  color: #0f172a !important;
+}
+
+body.light-mode .hero-subtitle,
+body.light-mode .faq-content,
+body.light-mode .laptop-category-sub,
+body.light-mode .form-label,
+body.light-mode p:not(.banner-description) {
+  color: #334155 !important;
+}
+
+body.light-mode .faq-button {
+  color: #0f172a !important;
+}
+
+body.light-mode .quote-type-btn p,
+body.light-mode .quote-type-btn ul li {
+  color: #334155 !important;
+}
+
+body.light-mode .badge-glow:not(.banner-carousel-wrapper .badge-glow) {
+  background: rgba(13, 148, 136, 0.12);
+  border-color: rgba(13, 148, 136, 0.4);
+  color: #0f766e;
+  font-weight: 700;
+}
+
+body.light-mode .badge-emerald {
+  background: #ccfbf1;
+  border-color: #0d9488;
+  color: #0f766e;
+  font-weight: 700;
+}
+
+body.light-mode .footer {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+/* EL BANNER TIENE FONDO OSCURO SOBRE IMAGEN EN MODO CLARO Y OSCURO: SIEMPRE TEXTO BLANCO & NEÓN */
+.banner-carousel-wrapper .banner-title,
+body.light-mode .banner-carousel-wrapper .banner-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
+}
+
+.banner-carousel-wrapper .banner-description,
+body.light-mode .banner-carousel-wrapper .banner-description {
+  color: #f1f5f9 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95) !important;
+  font-weight: 500 !important;
+}
+
+.banner-carousel-wrapper .text-gradient,
+body.light-mode .banner-carousel-wrapper .text-gradient {
+  background: linear-gradient(135deg, #48e5c2 0%, #38bdf8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.banner-carousel-wrapper .badge-glow,
+body.light-mode .banner-carousel-wrapper .badge-glow {
+  background: rgba(9, 13, 22, 0.88) !important;
+  border: 1px solid rgba(72, 229, 194, 0.5) !important;
+  color: #48e5c2 !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.banner-carousel-wrapper .insta-dot.active,
+body.light-mode .banner-carousel-wrapper .insta-dot.active {
+  background: #48e5c2 !important;
+  box-shadow: 0 0 12px #48e5c2 !important;
+}
+
+/* BOTONES NAVEGACIÓN DISCRETOS EN EL CARRUSEL (FLECHAS < >) */
+.carousel-nav-btn:hover {
+  opacity: 1 !important;
+  background: rgba(9, 13, 22, 0.9) !important;
+  border-color: #48e5c2 !important;
+  color: #48e5c2 !important;
+  transform: translateY(-50%) scale(1.15) !important;
+}
+
+
+

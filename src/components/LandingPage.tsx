@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { BannerCarousel } from './BannerCarousel';
-import { MercadoPagoModal } from './MercadoPagoModal';
 import { 
   Zap, 
   ShieldCheck, 
@@ -14,7 +13,6 @@ import {
   Calculator,
   HelpCircle,
   ChevronDown,
-  CreditCard,
   MapPin,
   Image,
   ShoppingBag,
@@ -40,9 +38,6 @@ export const LandingPage: React.FC = () => {
   const [includeBooking, setIncludeBooking] = useState(false);
   const [includeAdvancedSeo, setIncludeAdvancedSeo] = useState(false);
 
-  // Estado Modal Mercado Pago
-  const [isMpModalOpen, setIsMpModalOpen] = useState(false);
-
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
@@ -66,18 +61,18 @@ export const LandingPage: React.FC = () => {
     }
 
     if (quoteProjectType === 'ecommerce') {
-      selectedExtras.push('💳 Integración Pasarela Mercado Pago / Webpay (Incluido)');
+      selectedExtras.push('💬 Recepción de Pedidos Directos por WhatsApp (Incluido)');
     }
 
     if (includeBooking) selectedExtras.push('Agendamiento a 3 Reuniones para mantencion y cambios');
-    if (includeAdvancedSeo) selectedExtras.push('Posicionamiento SEO en Buscadores + Marcado JSON-LD');
+    if (includeAdvancedSeo) selectedExtras.push('Posicionamiento en Google para Atraer Clientes (SEO Avanzado)');
     return selectedExtras;
   };
 
   const getProjectTypeLabel = () => {
     if (quoteProjectType === 'express') return 'Landing Básica (Desde $149.990 CLP)';
     if (quoteProjectType === 'pro') return 'Web Pro Pyme (Desde $249.990 CLP)';
-    return 'Sitio Ventas / E-Commerce (Desde $299.990 CLP)';
+    return 'Sitio Ventas / E-Commerce Pyme (Desde $299.990 CLP)';
   };
 
   const handleSendQuoteWhatsapp = () => {
@@ -98,7 +93,7 @@ export const LandingPage: React.FC = () => {
   const faqs = [
     {
       q: '¿Qué incluye el Dominio .CL Gratis?',
-      a: 'En nuestros planes Web Pro Pyme ($249.990) y Sitio Ventas E-Commerce ($299.990), gestionamos el registro oficial de tu dominio .CL por 1 año entero completamente gratis a tu nombre.'
+      a: 'En nuestros planes Web Pro Pyme ($249.990) y Sitio Ventas E-Commerce Pyme ($299.990), gestionamos el registro oficial de tu dominio .CL por 1 año entero completamente gratis a tu nombre.'
     },
     {
       q: '¿Cómo funciona el Panel de Control Moldeable de Axioma Web?',
@@ -110,20 +105,12 @@ export const LandingPage: React.FC = () => {
     },
     {
       q: '¿Cuáles son los tiempos de entrega para cada proyecto?',
-      a: 'Una Landing Básica se entrega en 3 a 5 días hábiles. Un Sitio Web Pro toma entre 7 a 10 días, y una tienda E-Commerce completa entre 10 a 14 días hábiles con pasarela de pago activa.'
+      a: 'Una Landing Básica se entrega en 3 a 5 días hábiles. Un Sitio Web Pro toma entre 7 a 10 días, y una tienda E-Commerce Pyme completa entre 10 a 14 días hábiles con catálogo dinámico y pedidos por WhatsApp.'
     }
   ];
 
   return (
     <main className="landing-container" role="main">
-      {/* Modal Checkout Mercado Pago con Cupón 10% OFF */}
-      <MercadoPagoModal 
-        isOpen={isMpModalOpen}
-        onClose={() => setIsMpModalOpen(false)}
-        projectTypeLabel={getProjectTypeLabel()}
-        baseAmountCLP={calculateTotalEstimate()}
-        selectedExtras={getSelectedExtrasList()}
-      />
 
       {/* 1. HERO SECTION AXIOMA WEB */}
       <section className="hero-section" aria-label="Introducción a Axioma Web">
@@ -248,7 +235,7 @@ export const LandingPage: React.FC = () => {
                   </ul>
                 </button>
 
-                {/* PLAN 3: VENTAS / E-COMMERCE (Desde $299.990) */}
+                {/* PLAN 3: VENTAS / E-COMMERCE PYME (Desde $299.990) */}
                 <button 
                   type="button"
                   onClick={() => setQuoteProjectType('ecommerce')}
@@ -256,16 +243,16 @@ export const LandingPage: React.FC = () => {
                   style={{ textAlign: 'left', padding: '16px' }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <strong style={{ fontSize: '1.05rem' }}>Sitio Ventas / E-Commerce</strong>
+                    <strong style={{ fontSize: '1.05rem' }}>Sitio Ventas / E-Commerce Pyme</strong>
                     <span style={{ color: 'var(--c-mint-cyan)', fontWeight: 800, fontSize: '0.95rem' }}>Desde $299.990</span>
                   </div>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4, marginBottom: '10px' }}>
-                    Tienda online con catálogo dinámico y cobro con tarjeta.
+                    Tienda online con catálogo dinámico y pedidos directos por WhatsApp.
                   </p>
                   <ul style={{ listStyle: 'none', fontSize: '0.76rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: 'var(--c-mint-cyan)' }}><Globe size={13} /> 🌐 Dominio .CL + SSL GRATIS (1 Año)</li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#38bdf8' }}><CreditCard size={13} /> 💳 Pasarela Mercado Pago / Webpay</li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><ShoppingBag size={13} style={{ color: '#48e5c2' }} /> Catálogo de Productos / TCG</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#38bdf8' }}><MessageCircle size={13} /> 💬 Pedidos & Atención por WhatsApp</li>
+                    <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><ShoppingBag size={13} style={{ color: '#48e5c2' }} /> Catálogo de Productos para Pymes</li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><CheckCircle2 size={13} style={{ color: '#48e5c2' }} /> Todo lo de los planes anteriores</li>
                   </ul>
                 </button>
@@ -288,12 +275,12 @@ export const LandingPage: React.FC = () => {
               </label>
 
               <label className="quote-checkbox-label">
-                <span>Posicionamiento SEO en Buscadores + Marcado JSON-LD (+ $15.000)</span>
+                <span>Posicionamiento en Google para Atraer Clientes (SEO Avanzado) (+ $15.000)</span>
                 <input type="checkbox" checked={includeAdvancedSeo} onChange={(e) => setIncludeAdvancedSeo(e.target.checked)} className="custom-checkbox" />
               </label>
             </div>
 
-            {/* Total Calculado & Botones Duales */}
+            {/* Total Calculado & Botón Único de WhatsApp */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', paddingTop: '10px' }}>
               <div>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'block', fontWeight: 600 }}>PRESUPUESTO ESTIMADO TOTAL:</span>
@@ -301,19 +288,14 @@ export const LandingPage: React.FC = () => {
                   ${calculateTotalEstimate().toLocaleString('es-CL')} CLP
                 </strong>
                 <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--c-mint-cyan)', fontWeight: 700, marginTop: '2px' }}>
-                  🎁 Aplica cupón INAUGURACION10 para 10% OFF en Mercado Pago
+                  💬 Cotización instantánea sin compromisos
                 </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', flex: 1, justifyContent: 'flex-end' }}>
-                <button onClick={handleSendQuoteWhatsapp} className="btn-primary btn-whatsapp" style={{ padding: '14px 20px', fontSize: '0.9rem' }}>
-                  <MessageCircle size={18} />
+                <button onClick={handleSendQuoteWhatsapp} className="btn-primary btn-whatsapp" style={{ padding: '16px 28px', fontSize: '1rem', width: '100%', maxWidth: '360px', justifyContent: 'center' }}>
+                  <MessageCircle size={20} />
                   <span>Enviar Cotización a WhatsApp</span>
-                </button>
-
-                <button onClick={() => setIsMpModalOpen(true)} className="btn-primary" style={{ padding: '14px 20px', fontSize: '0.9rem', background: 'linear-gradient(135deg, #009ee3, #0072bb)' }}>
-                  <CreditCard size={18} />
-                  <span>Pagar con Tarjeta (Mercado Pago)</span>
                 </button>
               </div>
             </div>

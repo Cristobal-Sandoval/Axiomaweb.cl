@@ -193,7 +193,7 @@ export const LoginModal: React.FC = () => {
             }}
           >
             <ShieldCheck size={16} />
-            <span>Panel Admin (Cristóbal)</span>
+            <span>Panel Admin (Axioma Web)</span>
           </button>
         </div>
 

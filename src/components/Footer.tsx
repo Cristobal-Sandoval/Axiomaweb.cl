@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Mail, MapPin, ShieldCheck } from 'lucide-react';
+import { MessageCircle, Mail, MapPin, ShieldCheck, User } from 'lucide-react';
 
 const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -38,12 +38,16 @@ export const Footer: React.FC = () => {
             <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '16px', fontWeight: 700 }}>Canales Institucionales</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem', color: 'var(--text-muted)', alignItems: 'center' }}>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <User size={16} style={{ color: 'var(--c-mint-cyan)' }} />
+                <a href="https://cristobalsandoval-portafolio.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', fontWeight: 700 }}>Nosotros</a>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <MessageCircle size={16} style={{ color: 'var(--c-mint-cyan)' }} />
                 <a href="https://wa.me/56956628609" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Atención Comercial WhatsApp</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Mail size={16} style={{ color: 'var(--accent-secondary)' }} />
-                <a href="mailto:contacto@axiomaweb.cl" style={{ color: 'inherit' }}>contacto@axiomaweb.cl</a>
+                <Mail size={16} style={{ color: 'var(--c-mint-cyan)' }} />
+                <a href="mailto:cristobal.sandoval.balboa@gmail.com" style={{ color: 'inherit' }}>Email de contacto</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <MapPin size={16} style={{ color: 'var(--c-mint-cyan)' }} />

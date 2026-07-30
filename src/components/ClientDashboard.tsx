@@ -153,7 +153,7 @@ export const ClientDashboard: React.FC = () => {
               className={`tab-btn ${activeSiteId === 'cardpoint' ? 'active' : ''}`}
               onClick={() => handleSiteTabChange('cardpoint')}
             >
-              <span>💳 CardPoint TCG</span>
+              <span>🛒 CardPoint E-Commerce</span>
             </button>
 
             <button 
@@ -312,13 +312,13 @@ export const ClientDashboard: React.FC = () => {
               </div>
               <div>
                 <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Proponer Nuevos Cambios o Secciones</h2>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8' }}>Envía requerimientos al desarrollador (Cristóbal) para modificar estructura o código.</p>
+                <p style={{ fontSize: '0.82rem', color: '#94a3b8' }}>Envía requerimientos al equipo de desarrollo de Axioma Web para modificar estructura o código.</p>
               </div>
             </div>
 
             {reqSuccess && (
               <div style={{ background: 'rgba(99, 102, 241, 0.15)', border: '1px solid #6366f1', color: '#a5b4fc', padding: '12px', borderRadius: '10px', marginBottom: '16px', fontSize: '0.88rem' }}>
-                ¡Solicitud enviada a Cristóbal con éxito! Recibirás actualización en este panel y por correo.
+                ¡Solicitud enviada a Axioma Web con éxito! Recibirás actualización en este panel y por correo.
               </div>
             )}
 
@@ -489,14 +489,14 @@ export const ClientDashboard: React.FC = () => {
           <div className="glass-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', height: '380px' }}>
             <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px', color: '#60a5fa' }}>
               <MessageSquare size={18} />
-              <span>Mensaje Directo a Cristóbal</span>
+              <span>Mensaje Directo a Soporte Técnico</span>
             </h3>
 
             {/* Chat Box History */}
             <div style={{ flexGrow: 1, overflowY: 'auto', background: 'rgba(0,0,0,0.4)', borderRadius: '10px', padding: '12px', marginBottom: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {siteMessages.length === 0 ? (
                 <span style={{ fontSize: '0.8rem', color: '#64748b', textAlign: 'center', marginTop: 'auto', marginBottom: 'auto' }}>
-                  Inicia una conversación directa con Cristóbal Sandoval.
+                  Inicia una conversación directa con el equipo técnico de Axioma Web.
                 </span>
               ) : (
                 siteMessages.map(msg => (
@@ -509,7 +509,7 @@ export const ClientDashboard: React.FC = () => {
                     fontSize: '0.85rem'
                   }}>
                     <span style={{ display: 'block', fontSize: '0.68rem', opacity: 0.7, marginBottom: '2px' }}>
-                      {msg.sender === 'cliente' ? 'Tú' : 'Cristóbal (Admin)'} • {msg.timestamp}
+                      {msg.sender === 'cliente' ? 'Tú' : 'Soporte Axioma Web'} • {msg.timestamp}
                     </span>
                     <span>{msg.text}</span>
                   </div>

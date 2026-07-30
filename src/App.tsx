@@ -53,11 +53,11 @@ const MainContent: React.FC = () => {
       <LoginModal />
 
       <a 
-        href="https://wa.me/56956628609?text=Hola%20Cristóbal,%20quiero%20cotizar%20mi%20página%20web" 
+        href="https://wa.me/56956628609?text=Hola%20Axioma%20Web,%20quiero%20cotizar%20mi%20p%C3%A1gina%20web" 
         target="_blank" 
         rel="noopener noreferrer"
         className="floating-whatsapp"
-        title="Cotizar por WhatsApp con Cristóbal (+569 5662 8609)"
+        title="Cotizar por WhatsApp con Axioma Web"
       >
         <MessageCircle size={32} />
       </a>

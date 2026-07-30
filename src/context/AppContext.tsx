@@ -38,15 +38,15 @@ interface AppContextType {
 const INITIAL_SITES: Record<SiteId, ClientSiteConfig> = {
   'cardpoint': {
     id: 'cardpoint',
-    name: 'CardPoint TCG Platform',
-    category: 'E-Commerce & Coleccionismo TCG',
+    name: 'CardPoint E-Commerce Platform',
+    category: 'E-Commerce & Ventas Pyme',
     clientName: 'CardPoint Chile',
     clientEmail: 'contacto@cardpoint.cl',
-    bannerText: '🔥 ¡Mitos y Leyendas: Nueva expansión disponible con 15% OFF!',
+    bannerText: '🔥 ¡Nuevos productos disponibles con 15% OFF!',
     bannerActive: true,
     bannerBgColor: 'linear-gradient(90deg, #6366f1, #8b5cf6)',
-    heroTitle: 'Tu Tienda Especializada en Cartas TCG & Juegos de Colección',
-    heroSubtitle: 'Compra, vende y gestiona tus colecciones de cartas con la mayor rapidez del mercado.',
+    heroTitle: 'Tu Tienda Especializada en Catálogo Dinámico & Ventas Pyme',
+    heroSubtitle: 'Vende y gestiona tus productos en línea con la mayor rapidez del mercado.',
     whatsappPhone: '+56956628609',
     businessHours: 'Lun a Sáb: 10:00 - 20:00 hrs',
     themeStyle: 'dark-neon',
@@ -104,9 +104,9 @@ const INITIAL_SITES: Record<SiteId, ClientSiteConfig> = {
 const PROJECTS_SHOWCASE: ProjectShowcase[] = [
   {
     id: 'cardpoint',
-    title: 'CardPoint TCG',
-    subtitle: 'Plataforma E-Commerce para Cartas TCG',
-    description: 'Catálogo de cartas en tiempo real, carrito de compras optimizado y gestión dinámica de inventario.',
+    title: 'CardPoint E-Commerce',
+    subtitle: 'Plataforma E-Commerce para Pymes',
+    description: 'Catálogo de productos en tiempo real, carrito de compras optimizado y pedidos vía WhatsApp.',
     badge: 'Carga Ultra Rápida',
     techStack: ['React', 'TypeScript', 'E-Commerce', 'Vercel', 'Custom UI'],
     liveUrl: 'https://cardpoint.cl',
@@ -114,7 +114,7 @@ const PROJECTS_SHOWCASE: ProjectShowcase[] = [
     statusText: '🟢 En Vivo (Producción)',
     highlightStats: '99.9% Uptime | +150ms Tiempo de Respuesta',
     colorGradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-    previewBanner: '🔥 15% OFF en Expansión Mitos y Leyendas',
+    previewBanner: '🔥 15% OFF en Catálogo Seleccionado',
     previewImage: '/images/cardpoint_preview.png'
   },
   {
@@ -185,7 +185,7 @@ const INITIAL_MESSAGES: DirectMessage[] = [
     id: 'msg-2',
     siteId: 'cardpoint',
     sender: 'cliente',
-    text: '¡Excelente Cristóbal! Se nota súper fluido en celulares.',
+    text: '¡Excelente! Se nota súper fluido en celulares.',
     timestamp: '14:05',
     read: true
   }
@@ -262,7 +262,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const sessionData: UserSession = {
         role: 'admin',
         email: 'cristobal.sandoval.balboa@gmail.com',
-        clientName: 'Cristóbal Sandoval (Admin)'
+        clientName: 'Equipo Admin Axioma Web'
       };
       setUserSession(sessionData);
       setViewMode('admin-panel');
